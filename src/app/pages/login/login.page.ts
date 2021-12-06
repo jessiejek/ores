@@ -7,38 +7,45 @@ import { CrudService } from 'src/app/services/crud.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public postData = {
-    username: '',
-    password: '',
-    // username: 'PGALBO',
-    // password: '@Dell150790',
-  };
+  name:any;
+  age:any;
+  id:any;
+  location:any;
+  list:any;
   constructor(public crudservice:CrudService) { }
 
   ngOnInit() {
+    this.view();
   }
   checkInput() {
-    console.log(this.postData);
+
     let record = {};
-    record['name'] = this.postData.username;
-    record['password'] = this.postData.password;
+    record['name'] = this.name;
+    record['age'] = this.age;
+    record['location'] = this.location;
     //this.crudservice.
     this.crudservice.createNewEmplyoee(record).then(res =>{
-      console.log(res);
+
       this.view();
     }).catch(error =>{
       console.log(error);
-
     });
-
-
   }
   view(){
-    this.crudservice.getEmployee().subscribe((res: any) => {console.log(res);
-    });
+    this.crudservice.getEmployee().subscribe(
+      res => {
+        console.log(res);
+        this.list = res;
+      });
   }
-
   checkInput1() {
     this.view();
+  }
+  update(){
+    this.crudservice.updateEmployee(this.id);
+    this.view();
+  }
+  delete(id){
+    this.crudservice.deleteEmployee(id);
   }
 }

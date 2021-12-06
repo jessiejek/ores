@@ -14,57 +14,98 @@
           class="my-custom-slider"
         >
           <ion-card class="form-wrapper">
-            <img src="assets/img/orgwide-png.png" />
+
             <ion-card-content>
 
 
 
 
               <ion-item style="margin-top:-10px">
-                <ion-icon name="mail"></ion-icon>
+
+                <ion-input type="text" placeholder="name" id="input-username" [(ngModel)]="name">
+                </ion-input>
+              </ion-item>
+              <ion-item style="margin-top:-10px">
+
                 <ion-input
                   type="text"
-                  placeholder="Username or Email"
+                  placeholder="Age"
                   id="input-username"
-                  [(ngModel)]="postData.username"
+                  [(ngModel)]="age"
                 >
                 </ion-input>
               </ion-item>
-              <ion-item>
-                <ion-icon name="lock-closed"></ion-icon>
-                <ion-input
-                  type="password"
-                  placeholder="Password"
-                  id="input-password"
-                  [(ngModel)]="postData.password"
-                >
-                </ion-input>
+              <ion-item style="margin-top:-10px">
 
+                <ion-input
+                  type="text"
+                  placeholder="location"
+                  id="input-username"
+                  [(ngModel)]="location"
+                >
+                </ion-input>
               </ion-item>
+
+
+
               <ion-button
                 expand="block"
                 id="btn-confirm"
                 (click)="checkInput()"
 
                 ><div>
-                  test
+                  Add
                 </div>
 
               </ion-button>
-              <ion-button
+              <!--n-button
                 expand="block"
                 id="btn-confirm"
                 (click)="checkInput1()"
 
                 ><div>
-                  asdasdasd
+                  View
                 </div>
 
-              </ion-button>
+              </ion-button-->
+
+
               <br />
+
+
+
 
             </ion-card-content>
           </ion-card>
+    <ion-list *ngFor="let x of list">
+      <ion-item>
+        <ion-label>
+          <h2>{{x.name}}</h2>
+          <h3>{{x.id}}</h3>
+          <span (click)="delete(x.id)">delete</span>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+        <ion-card class="form-wrapper">
+          <ion-card-content>
+            <ion-item style="margin-top:-10px">
+
+              <ion-input
+                type="text"
+                placeholder="id"
+                id="input-username"
+                [(ngModel)]="id"
+              >
+              </ion-input>
+            </ion-item>
+            <ion-button expand="block" id="btn-confirm" (click)="update()" >
+              <div>
+                Update
+              </div>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
 
         </ion-col>
       </ion-row>
@@ -73,8 +114,6 @@
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-item lines="none" class="fontSize-12">
-    <ion-label class="ion-text-center"
-      >( Made by Chong Hua Hospital for Chong Hua Hospital )</ion-label
-    >
+
   </ion-item>
 </ion-footer>
