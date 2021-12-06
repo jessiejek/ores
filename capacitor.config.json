@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "ores",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

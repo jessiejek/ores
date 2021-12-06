@@ -1,0 +1,7 @@
+{
+  "name": "ores",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
