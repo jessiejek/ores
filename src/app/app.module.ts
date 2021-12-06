@@ -13,6 +13,7 @@ import { AngularFireDatabaseModule} from '@angular/fire/compat/database'
 import { AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
+import { CrudService } from './services/crud.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -25,7 +26,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,},CrudService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
