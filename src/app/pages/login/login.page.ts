@@ -25,11 +25,20 @@ export class LoginPage implements OnInit {
     //this.crudservice.
     this.crudservice.createNewEmplyoee(record).then(res =>{
       console.log(res);
+      this.view();
     }).catch(error =>{
       console.log(error);
 
-    })
+    });
 
 
+  }
+  view(){
+    this.crudservice.getEmployee().subscribe((res: any) => {console.log(res);
+    });
+  }
+
+  checkInput1() {
+    this.view();
   }
 }

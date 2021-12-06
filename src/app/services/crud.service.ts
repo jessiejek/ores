@@ -9,7 +9,11 @@ export class CrudService {
 
   createNewEmplyoee(Record){
 
-
+//this.fireservices.collection('Employee').get();
     return this.fireservices.collection('Employee').add(Record);
+  }
+  getEmployee(){
+    return this.fireservices.collection('Employee').valueChanges();
+
   }
 }
