@@ -14,10 +14,13 @@ import { AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
 import { CrudService } from './services/crud.service';
+import { CommonModule } from '@angular/common';
+import { ScreenSizeService } from './services/screen-size/screen-size.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
     IonicModule.forRoot(),
@@ -26,7 +29,7 @@ import { CrudService } from './services/crud.service';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,},CrudService],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,},CrudService,ScreenSizeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
