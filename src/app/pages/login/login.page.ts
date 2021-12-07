@@ -73,45 +73,35 @@ export class LoginPage implements OnInit {
 
            if(resp.user){
 
+
              /*this.crudService.setUser({
                username : resp.user.displayName,
                uid: resp.user.uid
              });*/
-
-             this.crudService.getUserInfo('users',resp.user.uid);
-
-
-
-
-             ////console.log(resp.user.multiFactor.user);
-             ////console.log(resp.user.multiFactor.user.email);
-             ////console.log(resp.user.multiFactor.user.uid);
-             ////console.log(resp.user.multiFactor.user.accessToken);
              let record = {};
+             console.log(resp.user.uid);
+
+             this.crudService.getUserInfo('users',resp.user.uid).subscribe(
+              res=>{
+                let x = JSON.stringify(res);
+                let parsedData = JSON.parse('['+x+']');
+               if(parsedData){
+                  record['address'] = parsedData[0].address;
+                  record['adminStatus'] = parsedData[0].adminStatus;
+                  record['name'] = parsedData[0].name;
+                }
+
+              }
+              );
              record['email'] = resp.user.multiFactor.user.email;
              record['uid'] = resp.user.multiFactor.user.uid;
              record['accessToken'] = resp.user.multiFactor.user.accessToken;
-             ////console.log(JSON.stringify(record));
-
             const userProfile = this.firestore.collection('profile').doc(resp.user.uid);
-
-
              userProfile.get().subscribe( result=>{
-
-
-
-
               if(result.exists){
                 this.storageService.store(AuthConstants.AUTH, JSON.stringify(record));
                 this.nav.navigateForward(['menu']);
               }else{
-/*
-                this.firestore.doc(`profile/${this.crudService.getUID()}`).set({
-                  name: resp.user.displayName,
-                  email: resp.user.email
-                });
-*/
-                 //this.nav.navigateForward(['uploadimage']);
               }
              })
            }
@@ -119,7 +109,7 @@ export class LoginPage implements OnInit {
 
            })
         }catch(err){
-          ////console.log(err);
+          console.log(err);
         }
       }
 

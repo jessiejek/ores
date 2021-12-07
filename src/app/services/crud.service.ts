@@ -20,14 +20,10 @@ export class CrudService {
 
 
     getUserInfo(data,id){
-      console.log(data);
-      console.log(id);
-
       /*const ref = this.fireservices.collection('Employee').doc(id).where
       return ref.valueChanges({idField: 'id'});*/
-      const ref = this.fireservices.collection(data).get(id);
-      console.log(ref);
-
+      const ref = this.fireservices.collection(data).doc(id);
+      return ref.valueChanges({idField: 'id'});
     }
 
 
@@ -68,7 +64,7 @@ export class CrudService {
   }
 
   deleteEmployee(del:any){
-    this.fireservices.collection('Employee').doc(del).delete();
+    this.fireservices.collection('Employee').doc(del).get().subscribe
   }
   updateEmployee(data:any){
     this.fireservices.collection('Employee').doc(data).update({name:'Jessie Jay'});

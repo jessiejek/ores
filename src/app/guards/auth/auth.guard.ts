@@ -18,8 +18,8 @@ export class AuthGuard implements CanActivate {
         let userIdentifier;
         this.storageService.get(AuthConstants.AUTH).then(
             (res) => {
-              //console.log(res);
-              if(res){
+              console.log(res);
+              if(res.adminStatus){
                 resolve(true);
               }else{
                 resolve(false)
