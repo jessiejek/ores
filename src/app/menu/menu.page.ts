@@ -20,6 +20,12 @@ export class MenuPage implements OnInit {
 
     });
   }
+  public appPages = [
+    { title: 'Over View', url: '/menu/overview', icon: 'bar-chart' },
+    { title: 'Members', url: '/menu/members', icon: 'people' },
+    { title: 'Tickets', url: '/menu/tickets', icon: 'ticket' },
+    { title: 'Settings', url: '/menu/settings', icon: 'cog' }
+  ];
 
   ngOnInit() {
   }

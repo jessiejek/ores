@@ -1,11 +1,52 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {AngularFireAuth} from '@angular/fire/compat/auth'
+
+export  interface UserPro{
+  username: string;
+  uid: string;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
+  private user : UserPro;
+  constructor(
+    public fireservices:AngularFirestore,
+    public auth: AngularFireAuth,) { }
 
-  constructor(public fireservices:AngularFirestore) { }
+
+
+
+
+
+    loginFireauth(value){
+
+     }
+
+     setUser(user: UserPro){
+      return this.user = user;
+    }
+
+    getUID(): string{
+      return this.user.uid;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   createNewEmplyoee(Record){
 

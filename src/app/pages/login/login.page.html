@@ -1,155 +1,85 @@
-
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>OresPh</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title>loginscreen</ion-title> -->
   </ion-toolbar>
+  <ion-buttons slot="start">
+  <ion-back-button defaulthref="login" text=""></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
 <ion-content>
+    <ion-card class="ion-no-margin">
+      <ion-img src="assets/images/header1.png"></ion-img>
+      <ion-card-content>
 
-  <form (ngSubmit)="login()" [formGroup]="credentials">
-    <div class="input-group">
-      <ion-item>
-        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
-      </ion-item>
-      <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
-        <span *ngIf="email.errors?.required">Email is required</span>
-        <span *ngIf="email.errors?.email">Email is invalid</span>
+    <form [formGroup]="validationFormUser" (ngSubmit)="LoginUser(validationFormUser.value)">
+        <div class="wrapform">
+         <ion-item>
+            <ion-input type="text" name="email" formControlName="email"  placeholder="Email">
+           <ion-icon name="mail-outline"></ion-icon>
+           </ion-input>
+           </ion-item>
+           <div>
+               <ng-container *ngFor="let validation of validationUserMessage.email">
+                     <div class="error_message" *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)">
+                        {{validation.message}}
+                     </div>
+               </ng-container>
+           </div>
+
+           <ion-item>
+
+             <ion-input type="password" name="password" formControlName="password"  placeholder="**************" >
+             <ion-icon name="lock-closed"></ion-icon>
+             </ion-input>
+             </ion-item>
+
+             <div>
+                 <ng-container *ngFor="let validation of validationUserMessage.password">
+                      <div class="error_message" *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)">
+                         {{validation.message}}
+                      </div>
+                  </ng-container>
+             </div>
+
+        </div>
+         <div class="password_forgot">
+            <ion-button fill="clear" class="ion-no-padding">ForgotPasword?</ion-button>
+         </div>
+         <div class="sign-btn-wrap">
+            <ion-button  shape="round" type="submit"  fill="solid" class="sign-btn" [disabled]="!validationFormUser.valid" >Login</ion-button>
+           </div>
+
+           <div class="text-tag">
+           <span>Or via Social Media</span>
+           </div>
+
+           <div class="social-btns">
+               <ion-button fill="clear"  class="facebookbtn ion-no-padding">
+             <ion-img src="assets/images/facebook.png"></ion-img>
+               </ion-button>
+               <ion-button fill="clear"  class="googlebtn ion-no-padding">
+             <ion-img src="assets/images/google.png"></ion-img>
+               </ion-button>
+               <ion-button fill="clear"  class="applebtn ion-no-padding">
+             <ion-img src="assets/images/apple.png"></ion-img>
+               </ion-button>
+
+             </div>
+
+
+
+      </form>
+      </ion-card-content>
+
+
+    </ion-card>
+
+
+    <div class="ion-card-footer">
+     <span>Don’t have an account?</span><button class="ion-no-padding" >Sign Up</button>
       </div>
-      <ion-item>
-        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-      </ion-item>
-      <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
-        <span *ngIf="password.errors?.required">Password is required</span>
-        <span *ngIf="password.errors?.minlength">Password needs to be 6 characters</span>
-      </div>
-    </div>
 
-    <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
-    <!--ion-button type="button" expand="block" color="light" fill="clear">Not yet a member? Sign up!
-    </ion-button>
 
-    <ion-button type="button" expand="block" color="tertiary">
-      <ion-icon name="logo-google" slot="start"></ion-icon>
-      Sign in with Google
-    </ion-button>
-    <ion-button type="button" expand="block" color="tertiary">
-      <ion-icon name="logo-apple" slot="start"></ion-icon>
-      Sign in with Apple
-    </ion-button-->
-  </form>
+
 </ion-content>
-
-
-<!--
-<ion-content>
-
-
-  <div class="wrapper">
-    <ion-grid>
-      <ion-row>
-        <ion-col
-          size-lg="4"
-          offset-lg="4 "
-          size-md="4"
-          offset-md="4 "
-          size-sm="6"
-          size="12"
-          class="my-custom-slider"
-        >
-          <ion-card class="form-wrapper">
-
-            <ion-card-content>
-
-
-
-
-              <ion-item style="margin-top:-10px">
-
-                <ion-input type="text" placeholder="name" id="input-username" [(ngModel)]="name">
-                </ion-input>
-              </ion-item>
-              <ion-item style="margin-top:-10px">
-
-                <ion-input
-                  type="text"
-                  placeholder="Age"
-                  id="input-username"
-                  [(ngModel)]="age"
-                >
-                </ion-input>
-              </ion-item>
-              <ion-item style="margin-top:-10px">
-
-                <ion-input
-                  type="text"
-                  placeholder="location"
-                  id="input-username"
-                  [(ngModel)]="location"
-                >
-                </ion-input>
-              </ion-item>
-
-
-
-              <ion-button
-                expand="block"
-                id="btn-confirm"
-                (click)="checkInput()"
-
-                ><div>
-                  Add
-                </div>
-
-              </ion-button>
-
-
-
-              <br />
-
-
-
-
-            </ion-card-content>
-          </ion-card>
-    <ion-list *ngFor="let x of list">
-      <ion-item>
-        <ion-label>
-          <h2>{{x.name}}</h2>
-          <h3>{{x.id}}</h3>
-          <span (click)="delete(x.id)">delete</span>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-
-        <ion-card class="form-wrapper">
-          <ion-card-content>
-            <ion-item style="margin-top:-10px">
-
-              <ion-input
-                type="text"
-                placeholder="id"
-                id="input-username"
-                [(ngModel)]="id"
-              >
-              </ion-input>
-            </ion-item>
-            <ion-button expand="block" id="btn-confirm" (click)="update()" >
-              <div>
-                Update
-              </div>
-            </ion-button>
-          </ion-card-content>
-        </ion-card>
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-</ion-content>
-<ion-footer class="ion-no-border">
-  <ion-item lines="none" class="fontSize-12">
-
-  </ion-item>
-</ion-footer>
--->

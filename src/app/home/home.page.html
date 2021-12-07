@@ -1,22 +1,195 @@
-<ion-header [translucent]="true">
+
+<ion-header  class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title slot="end">{{ folder }}</ion-title>
+    <!-- <ion-title>login</ion-title> -->
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
-  <div id="container">
-    <ion-button (click)="darkmode()">Default</ion-button>
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-card class="ion-no-margin">
+  <ion-img src="assets/images/header.png"></ion-img>
+  <ion-card-header>
+  <ion-card-title>
+     Welcome
+  </ion-card-title>
+  <ion-card-subtitle class="ion-text-lowercase">
+    This app is a social media platform for
+    artists — and it’s all about visuals
+  </ion-card-subtitle>
+
+  </ion-card-header>
+
+  <ion-card-content>
+    <div class="signin-btns">
+        <ion-button  size="small" fill="solid" shape="round" class="loginbtn" (click)="gotoLoginpage()">
+         Login
+        </ion-button>
+        <ion-button  size="small" fill="outline" shape="round" color="light" (click)="registerUser()" >Sign Up</ion-button>
+      </div>
+      <div class="text-tag">
+      <span>Or via Social Media</span>
+      </div>
+
+      <div class="social-btns">
+          <ion-button fill="clear"  class="facebookbtn ion-no-padding" (click)="loginwithFacebook()">
+        <ion-img src="assets/images/facebook.png"></ion-img>
+          </ion-button>
+          <ion-button fill="clear"  class="googlebtn ion-no-padding" (click)="googlePlusLogin()">
+        <ion-img src="assets/images/google.png"></ion-img>
+          </ion-button>
+          <ion-button fill="clear"  class="applebtn ion-no-padding">
+        <ion-img src="assets/images/apple.png"></ion-img>
+          </ion-button>
+
+        </div>
+  </ion-card-content>
+
+</ion-card>
+
+</ion-content>
+
+<!---
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>OresPh</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form (ngSubmit)="login()" [formGroup]="credentials">
+    <div class="input-group">
+      <ion-item>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+      <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+        <span *ngIf="email.errors?.required">Email is required</span>
+        <span *ngIf="email.errors?.email">Email is invalid</span>
+      </div>
+      <ion-item>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
+      <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+        <span *ngIf="password.errors?.required">Password is required</span>
+        <span *ngIf="password.errors?.minlength">Password needs to be 6 characters</span>
+      </div>
+    </div>
+
+    <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
+  </form>
+</ion-content>
+-->
+
+<!--
+<ion-content>
+
+
+  <div class="wrapper">
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          size-lg="4"
+          offset-lg="4 "
+          size-md="4"
+          offset-md="4 "
+          size-sm="6"
+          size="12"
+          class="my-custom-slider"
+        >
+          <ion-card class="form-wrapper">
+
+            <ion-card-content>
+
+
+
+
+              <ion-item style="margin-top:-10px">
+
+                <ion-input type="text" placeholder="name" id="input-username" [(ngModel)]="name">
+                </ion-input>
+              </ion-item>
+              <ion-item style="margin-top:-10px">
+
+                <ion-input
+                  type="text"
+                  placeholder="Age"
+                  id="input-username"
+                  [(ngModel)]="age"
+                >
+                </ion-input>
+              </ion-item>
+              <ion-item style="margin-top:-10px">
+
+                <ion-input
+                  type="text"
+                  placeholder="location"
+                  id="input-username"
+                  [(ngModel)]="location"
+                >
+                </ion-input>
+              </ion-item>
+
+
+
+              <ion-button
+                expand="block"
+                id="btn-confirm"
+                (click)="checkInput()"
+
+                ><div>
+                  Add
+                </div>
+
+              </ion-button>
+
+
+
+              <br />
+
+
+
+
+            </ion-card-content>
+          </ion-card>
+    <ion-list *ngFor="let x of list">
+      <ion-item>
+        <ion-label>
+          <h2>{{x.name}}</h2>
+          <h3>{{x.id}}</h3>
+          <span (click)="delete(x.id)">delete</span>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+        <ion-card class="form-wrapper">
+          <ion-card-content>
+            <ion-item style="margin-top:-10px">
+
+              <ion-input
+                type="text"
+                placeholder="id"
+                id="input-username"
+                [(ngModel)]="id"
+              >
+              </ion-input>
+            </ion-item>
+            <ion-button expand="block" id="btn-confirm" (click)="update()" >
+              <div>
+                Update
+              </div>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
+<ion-footer class="ion-no-border">
+  <ion-item lines="none" class="fontSize-12">
+
+  </ion-item>
+</ion-footer>
+-->

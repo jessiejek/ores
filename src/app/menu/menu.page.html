@@ -1,4 +1,4 @@
-<ion-tabs *ngIf="!isDesktop">
+<!--ion-tabs *ngIf="!isDesktop">
   <ion-tab-bar slot="bottom">
     <ion-tab-button id="button-in-patients" tab="in-patients">
       <ion-icon name="person-circle-outline"></ion-icon>
@@ -10,10 +10,6 @@
     </ion-tab-button>
 
 
-    <!--ion-tab-button id="button-appointments" tab="appointments">
-      <ion-icon name="calendar-outline"></ion-icon>
-      <ion-label class="tab-font-family">{{this.constants.MENU__VALUE__APPOINTMENTS}}</ion-label>
-    </ion-tab-button-->
     <ion-tab-button id="button-news-feed" tab="news-feed">
       <ion-icon name="newspaper-outline"></ion-icon>
       <ion-label class="tab-font-family">News Feed</ion-label>
@@ -35,7 +31,7 @@
     <ion-toolbar>
       <ion-row class="ion-align-items-center">
         <ion-col size="2">
-          <!--chh-app-logo-sm ></chh-app-logo-sm-->
+
         </ion-col>
         <ion-col size="10">
           <div class="navbar" class="ion-text-center chh-bg">
@@ -59,18 +55,6 @@
             >
               InPatients
             </ion-button>
-            <!--ion-button
-              id="button-appointments"
-              fill="clear"
-              routerLink="/menu/appointments"
-              routerDirection="root"
-              routerLinkActive="active-link"
-              class="link"
-            >
-              {{this.constants.MENU__VALUE__APPOINTMENTS}}
-            </ion-button-->
-
-
             <ion-button
               id="button-appointments"
               fill="clear"
@@ -81,10 +65,6 @@
             >
               News Feed
             </ion-button>
-
-
-
-
             <ion-button
               id="button-settings"
               fill="clear"
@@ -116,4 +96,28 @@
   <div class="footer tab-font-family">
     <span>hehe</span>
   </div>
-</div>
+</div-->
+
+
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header>OresPH</ion-list-header>
+          <!--ion-note>hi@ionicframework.com</ion-note-->
+
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

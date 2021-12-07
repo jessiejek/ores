@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/services/crud.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -9,58 +9,49 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  name:any;
-  age:any;
-  id:any;
-  location:any;
-  list:any;
-  credentials: FormGroup;
-  constructor(public crudservice:CrudService,
-    private fb: FormBuilder,
-    private alertController: AlertController,
+  validationUserMessage ={
+    email:[
+      {type:"required", message:"Please enter your Email"},
+      {type:"pattern", message:"The Email entered is Incorrect.Try again"}
+    ],
+    password:[
+      {type:"required", message:"please Enter your Password!"},
+      {type:"minlength", message:"The Password must be at least 5 characters or more"}
+
+    ]
+  }
+  validationFormUser: FormGroup;
+  constructor(
+    public formbuider: FormBuilder,
     private router: Router,
-    private loadingController: LoadingController) { }
+    private nav: NavController,
+    private crudService:CrudService
+    ) { }
 
 
-  ngOnInit() {
-    this.view();
-    this.credentials = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
-  }
+    ngOnInit() {
 
-  async login() {
-    const loading = await this.loadingController.create();
-    await loading.present();
-    await loading.dismiss();
-    /*
-    this.authService.login(this.credentials.value).subscribe(
-      async (res) => {
-        await loading.dismiss();
-        this.router.navigateByUrl('/tabs', { replaceUrl: true });
-      },
-      async (res) => {
-        await loading.dismiss();
-        const alert = await this.alertController.create({
-          header: 'Login failed',
-          message: res.error.error,
-          buttons: ['OK'],
-        });
 
-        await alert.present();
+
+      this.validationFormUser = this.formbuider.group({
+        email: new FormControl('', Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        ])),
+        password: new FormControl('', Validators.compose([
+          Validators.required,
+          Validators.minLength(5)
+        ]))
+      })
+
       }
-    );*/
-  }
 
-  // Easy access for form fields
-  get email() {
-    return this.credentials.get('email');
-  }
+    LoginUser(value){
 
-  get password() {
-    return this.credentials.get('password');
-  }
+    }
+
+
+    /*
   checkInput() {
 
     let record = {};
@@ -92,4 +83,54 @@ export class LoginPage implements OnInit {
   delete(id){
     this.crudservice.deleteEmployee(id);
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  gotoLoginpage(){
+    //this.nav.navigateForward(['loginscreen']);
+  }
+
+  registerUser(){
+    //this.nav.navigateForward(['signup'])
+  }
+
+  loginwithFacebook(){
+
+
+  }
+
+
+
+
+  googlePlusLogin(){
+
+  }
+
+
+
+*/
+
+
+
 }

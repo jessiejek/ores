@@ -19,6 +19,10 @@ const routes: Routes = [
       loadChildren: () => import('../menu-members/menu-members.module').then( m => m.MenuMembersPageModule)
     },
     {
+      path: 'tickets',
+      loadChildren: () => import('../menu-tickets/menu-tickets.module').then( m => m.MenuTicketsPageModule)
+    },
+    {
       path: 'settings',
       loadChildren: () => import('../menu-settings/menu-settings.module').then( m => m.MenuSettingsPageModule)
     }, {
