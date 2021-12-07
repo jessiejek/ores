@@ -69,7 +69,7 @@ export class LoginPage implements OnInit {
         (res) => {
           console.log(res);
           this.validationFormUser.patchValue({email: res[0].email});
-          this.validationFormUser.patchValue({password: res[0].email});
+          this.validationFormUser.patchValue({password: res[0].password});
       })
       .catch((err) => {
 
