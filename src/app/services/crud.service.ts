@@ -19,7 +19,16 @@ export class CrudService {
 
 
 
+    getUserInfo(data,id){
+      console.log(data);
+      console.log(id);
 
+      /*const ref = this.fireservices.collection('Employee').doc(id).where
+      return ref.valueChanges({idField: 'id'});*/
+      const ref = this.fireservices.collection(data).get(id);
+      console.log(ref);
+
+    }
 
 
     loginFireauth(value){
@@ -30,14 +39,6 @@ export class CrudService {
         )
       })
      }
-
-     setUser(user: UserPro){
-      return this.user = user;
-    }
-
-    getUID(): string{
-      return this.user.uid;
-    }
 
 
 

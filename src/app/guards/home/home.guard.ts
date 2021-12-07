@@ -15,22 +15,23 @@ export class HomeGuard implements CanActivate {
     public router: Router,) {}
     canActivate(): Promise<boolean> {
       return new Promise((resolve) => {
+        //console.log('at home guard');
+
         let userIdentifier;
         this.storageService.get(AuthConstants.AUTH).then(
             (res) => {
-              console.log(res);
+              //console.log(res);
               if(res){
-                resolve(true);
+                resolve(false);
                 this.router.navigate(["/menu"]);
               }else{
-                resolve(false)
+                resolve(true)
 
               }
 
           })
           .catch((err) => {
-            resolve(false);
-            this.router.navigate(["/login"]);
+            resolve(true);
           });
       });
     }

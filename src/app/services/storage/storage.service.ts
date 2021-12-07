@@ -15,8 +15,8 @@ export class StorageService {
 
   // Store the value
   async store(storageKey: string, value: any) {
-    console.log(storageKey);
-    console.log(value);
+    //console.log(storageKey);
+    //console.log(value);
 
     const encryptedValue = this.aes.encrypt(value);
     localStorage.setItem(storageKey,encryptedValue);
@@ -24,8 +24,13 @@ export class StorageService {
 
   // Get the value
   async get(storageKey: string) {
-    console.log(storageKey);
-    return JSON.parse(this.aes.decrypt(localStorage.getItem(storageKey)));
+    //console.log(storageKey);
+    let data = localStorage.getItem(storageKey);
+    if(data != null){
+      return JSON.parse(this.aes.decrypt(localStorage.getItem(storageKey)));
+    }else{
+      return false;
+    }
 
   }
 

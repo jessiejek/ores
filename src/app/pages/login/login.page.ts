@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
           window.location.reload();
         }
         this.isDesktop = isDesktop;
-        //console.log(this.isDesktop );
+        ////console.log(this.isDesktop );
       });
     }
 
@@ -65,7 +65,7 @@ export class LoginPage implements OnInit {
       }
 
       LoginUser(value){
-        //console.log("Am logged in");
+        ////console.log("Am logged in");
         try{
            this.crudService.loginFireauth(value).then( resp =>{
 
@@ -73,19 +73,25 @@ export class LoginPage implements OnInit {
 
            if(resp.user){
 
-             this.crudService.setUser({
+             /*this.crudService.setUser({
                username : resp.user.displayName,
                uid: resp.user.uid
-             })
-             //console.log(resp.user.multiFactor.user);
-             //console.log(resp.user.multiFactor.user.email);
-             //console.log(resp.user.multiFactor.user.uid);
-             //console.log(resp.user.multiFactor.user.accessToken);
+             });*/
+
+             this.crudService.getUserInfo('users',resp.user.uid);
+
+
+
+
+             ////console.log(resp.user.multiFactor.user);
+             ////console.log(resp.user.multiFactor.user.email);
+             ////console.log(resp.user.multiFactor.user.uid);
+             ////console.log(resp.user.multiFactor.user.accessToken);
              let record = {};
              record['email'] = resp.user.multiFactor.user.email;
              record['uid'] = resp.user.multiFactor.user.uid;
              record['accessToken'] = resp.user.multiFactor.user.accessToken;
-             //console.log(JSON.stringify(record));
+             ////console.log(JSON.stringify(record));
 
             const userProfile = this.firestore.collection('profile').doc(resp.user.uid);
 
@@ -97,15 +103,14 @@ export class LoginPage implements OnInit {
 
               if(result.exists){
                 this.storageService.store(AuthConstants.AUTH, JSON.stringify(record));
-                //console.log('tabs');
                 this.nav.navigateForward(['menu']);
               }else{
-
+/*
                 this.firestore.doc(`profile/${this.crudService.getUID()}`).set({
                   name: resp.user.displayName,
                   email: resp.user.email
                 });
-
+*/
                  //this.nav.navigateForward(['uploadimage']);
               }
              })
@@ -114,7 +119,7 @@ export class LoginPage implements OnInit {
 
            })
         }catch(err){
-          //console.log(err);
+          ////console.log(err);
         }
       }
 
@@ -132,13 +137,13 @@ export class LoginPage implements OnInit {
 
       this.view();
     }).catch(error =>{
-      //console.log(error);
+      ////console.log(error);
     });
   }
   view(){
     this.crudservice.getEmployee().subscribe(
       res => {
-        //console.log(res);
+        ////console.log(res);
         this.list = res;
       });
   }

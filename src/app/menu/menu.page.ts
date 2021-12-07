@@ -25,7 +25,7 @@ export class MenuPage implements OnInit {
     { title: 'Members', url: '/menu/members', icon: 'people' },
     { title: 'Tickets', url: '/menu/tickets', icon: 'ticket' },
     { title: 'Settings', url: '/menu/settings', icon: 'cog' },
-    { title: 'Log Out', url: 'out', icon: 'exit' }
+    { title: 'Log Out', url: '/out', icon: 'exit' }
   ];
 
   ngOnInit() {
@@ -34,7 +34,9 @@ export class MenuPage implements OnInit {
 
   }
   goto(to){
-    if(to != 'out'){
+    //console.log(to);
+
+    if(to != '/out'){
       this.router.navigate([to]);
     }else{
       localStorage.removeItem('userData');
