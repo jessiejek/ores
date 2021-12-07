@@ -80,11 +80,14 @@
           <ion-row>
             <ion-col size='6'>
 
+
+              <div [chart]="column"></div>
+              <br />
             </ion-col>
             <ion-col size='6'>
               <ion-grid>
                 <ion-row>
-                  <ion-col size="6" *ngFor="let x of maritalStatusCount">
+                  <ion-col size="6" *ngFor="let x of maritalStatusCount1">
                     <h3 >{{x.statusTitle}} : {{x.statusCount}}</h3>
                   </ion-col>
                 </ion-row>

@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { CrudService } from './services/crud.service';
 import { CommonModule } from '@angular/common';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
-
+import { ChartModule } from 'angular-highcharts';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,6 +29,7 @@ import { ScreenSizeService } from './services/screen-size/screen-size.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    ChartModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,},CrudService,ScreenSizeService],
   bootstrap: [AppComponent],

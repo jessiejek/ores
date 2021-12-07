@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { MenuOverviewPageRoutingModule } from './menu-overview-routing.module';
 
 import { MenuOverviewPage } from './menu-overview.page';
-
+import { ChartModule } from 'angular-highcharts';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuOverviewPageRoutingModule
+    MenuOverviewPageRoutingModule,
+    ChartModule
   ],
   declarations: [MenuOverviewPage]
 })
