@@ -12,8 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'menu',
-    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
   }/*,
   {
     path: 'menu-overview',

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../guards/auth/auth.guard';
+import { UserDataResolver } from '../resolvers/userData.resolver';
 
 import { MenuPage } from './menu.page';
 
@@ -7,7 +9,10 @@ const routes: Routes = [
   {
     path: '',
     component: MenuPage,
-
+    canActivate: [AuthGuard],
+    resolve:{
+      userData: UserDataResolver
+    },
   children: [
 
     {

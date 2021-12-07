@@ -5,7 +5,9 @@ import { AlertController, LoadingController, NavController } from '@ionic/angula
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ScreenSizeService } from 'src/app/services/screen-size/screen-size.service';
-
+import { AESEncryptDecryptServiceService } from 'src/app/services/encryption/aesencrypt-decrypt-service.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
+import { AuthConstants } from "../../config/auth-constants";
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -31,14 +33,16 @@ export class LoginPage implements OnInit {
     private nav: NavController,
     private crudService:CrudService,
     private firestore: AngularFirestore,
-    private screensizeService: ScreenSizeService
+    private screensizeService: ScreenSizeService,
+    public aes:AESEncryptDecryptServiceService,
+    public storageService:StorageService,
     ) {
       this.screensizeService.isDesktopView().subscribe((isDesktop) => {
         if (this.isDesktop && !isDesktop) {
           window.location.reload();
         }
         this.isDesktop = isDesktop;
-        console.log(this.isDesktop );
+        //console.log(this.isDesktop );
       });
     }
 
@@ -61,7 +65,7 @@ export class LoginPage implements OnInit {
       }
 
       LoginUser(value){
-        console.log("Am logged in");
+        //console.log("Am logged in");
         try{
            this.crudService.loginFireauth(value).then( resp =>{
 
@@ -73,8 +77,16 @@ export class LoginPage implements OnInit {
                username : resp.user.displayName,
                uid: resp.user.uid
              })
-             console.log(resp.user.multiFactor.user);
-             console.log(resp.user.multiFactor.user.email);
+             //console.log(resp.user.multiFactor.user);
+             //console.log(resp.user.multiFactor.user.email);
+             //console.log(resp.user.multiFactor.user.uid);
+             //console.log(resp.user.multiFactor.user.accessToken);
+             let record = {};
+             record['email'] = resp.user.multiFactor.user.email;
+             record['uid'] = resp.user.multiFactor.user.uid;
+             record['accessToken'] = resp.user.multiFactor.user.accessToken;
+             //console.log(JSON.stringify(record));
+
             const userProfile = this.firestore.collection('profile').doc(resp.user.uid);
 
 
@@ -84,7 +96,8 @@ export class LoginPage implements OnInit {
 
 
               if(result.exists){
-                console.log('tabs');
+                this.storageService.store(AuthConstants.AUTH, JSON.stringify(record));
+                //console.log('tabs');
                 this.nav.navigateForward(['menu']);
               }else{
 
@@ -101,7 +114,7 @@ export class LoginPage implements OnInit {
 
            })
         }catch(err){
-          console.log(err);
+          //console.log(err);
         }
       }
 
@@ -119,13 +132,13 @@ export class LoginPage implements OnInit {
 
       this.view();
     }).catch(error =>{
-      console.log(error);
+      //console.log(error);
     });
   }
   view(){
     this.crudservice.getEmployee().subscribe(
       res => {
-        console.log(res);
+        //console.log(res);
         this.list = res;
       });
   }
