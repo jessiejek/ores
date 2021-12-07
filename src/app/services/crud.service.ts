@@ -25,7 +25,11 @@ export class CrudService {
       const ref = this.fireservices.collection(data).doc(id);
       return ref.valueChanges({idField: 'id'});
     }
+    getData(data){
+      const ref = this.fireservices.collection(data);
+      return ref.valueChanges({idField: 'id'});
 
+    }
 
     loginFireauth(value){
       return new Promise<any> ( (resolve, reject)=>{

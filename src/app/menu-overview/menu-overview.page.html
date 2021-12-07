@@ -24,7 +24,82 @@
 
 
 
-<ion-content>
-asdasdasd
+<ion-content *ngIf="isDesktop">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10" offset="1" >
+
+
+        <ion-grid>
+          <ion-row>
+
+
+            <ion-col size-md="3">
+              <ion-card>
+                <ion-row>
+                  <ion-col size-xs="12" class="ion-text-center" >
+                    <h3 >Users :</h3>
+                  </ion-col>
+                  </ion-row>
+
+              </ion-card>
+            </ion-col>
+            <ion-col size-md="3">
+              <ion-card>
+                <ion-row>
+                  <ion-col size-xs="12" class="ion-text-center" >
+                    <h3 >Low Risk :</h3>
+                  </ion-col>
+                  </ion-row>
+
+              </ion-card>
+            </ion-col>
+            <ion-col size-md="3">
+              <ion-card>
+                <ion-row>
+                  <ion-col size-xs="12" class="ion-text-center" >
+                    <h3 >Mederate Risk :</h3>
+                  </ion-col>
+                  </ion-row>
+
+              </ion-card>
+            </ion-col>
+            <ion-col size-md="3">
+              <ion-card>
+                <ion-row>
+                  <ion-col size-xs="12" class="ion-text-center" >
+                    <h3 >High Risk :</h3>
+                  </ion-col>
+                  </ion-row>
+
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row>
+            <ion-col size='6'>
+
+            </ion-col>
+            <ion-col size='6'>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6" *ngFor="let x of maritalStatusCount">
+                    <h3 >{{x.statusTitle}} : {{x.statusCount}}</h3>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+
+
+
+        </ion-grid>
+
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
