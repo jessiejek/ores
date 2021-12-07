@@ -86,15 +86,16 @@
                      </div-->
 
 
-                     <ion-item class="bgtrans" lines="none">
-                      <ion-label>Remember Me</ion-label>
-                      <ion-checkbox color="primary" checked slot="end"></ion-checkbox>
-                    </ion-item>
+
 
 
               </form>
 
-
+              <ion-item class="bgtrans" lines="none">
+                <ion-label>Remember Me</ion-label>
+                <ion-checkbox color="primary" checked slot="end" [(ngModel)]="rememberMe"
+                (ionChange)="segmentChanged($event)"></ion-checkbox>
+              </ion-item>
 
 
 

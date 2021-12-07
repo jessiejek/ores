@@ -27,6 +27,7 @@ export class LoginPage implements OnInit {
   }
   validationFormUser: FormGroup;
   isDesktop: boolean;
+  rememberMe:boolean;
   constructor(
     public formbuider: FormBuilder,
     private router: Router,
@@ -42,14 +43,37 @@ export class LoginPage implements OnInit {
           window.location.reload();
         }
         this.isDesktop = isDesktop;
-        ////console.log(this.isDesktop );
+        //////console.log(this.isDesktop );
       });
     }
 
-
+    segmentChanged(e){
+      //console.log(e.detail.checked);
+      this.rememberMe = e.detail.checked;
+      let x="";
+      if(this.rememberMe){
+        x='1';
+      }else{
+        x='0';
+      }
+      localStorage.setItem('rememberMeFlag',x);
+    }
     ngOnInit() {
+      let rememberMeFlag = localStorage.getItem('rememberMeFlag');
+      if(rememberMeFlag != ''){
+        if(rememberMeFlag=='1'){
+          this.rememberMe = true;
+        }
+      }
+      this.storageService.get(AuthConstants.RememberMe).then(
+        (res) => {
+          console.log(res);
+          this.validationFormUser.patchValue({email: res[0].email});
+          this.validationFormUser.patchValue({password: res[0].email});
+      })
+      .catch((err) => {
 
-
+      });
 
       this.validationFormUser = this.formbuider.group({
         email: new FormControl('', Validators.compose([
@@ -60,12 +84,12 @@ export class LoginPage implements OnInit {
           Validators.required,
           Validators.minLength(5)
         ]))
-      })
+      });
 
       }
 
       LoginUser(value){
-        ////console.log("Am logged in");
+        //////console.log("Am logged in");
         try{
            this.crudService.loginFireauth(value).then( resp =>{
 
@@ -79,7 +103,7 @@ export class LoginPage implements OnInit {
                uid: resp.user.uid
              });*/
              let record = {};
-             console.log(resp.user.uid);
+
 
              this.crudService.getUserInfo('users',resp.user.uid).subscribe(
               res=>{
@@ -100,6 +124,18 @@ export class LoginPage implements OnInit {
              userProfile.get().subscribe( result=>{
               if(result.exists){
                 this.storageService.store(AuthConstants.AUTH, JSON.stringify(record));
+
+                if(this.rememberMe){
+                  //this.storageService.store(AuthConstants.RememberMe, value);
+                  //console.log(value);
+
+                  //console.log(JSON.stringify(value));
+                  let valueToSave = JSON.stringify(value);
+                  valueToSave = '['+valueToSave+']';
+                  //console.log(valueToSave);
+
+                  this.storageService.store(AuthConstants.RememberMe, (valueToSave));
+                }
                 this.nav.navigateForward(['menu']);
               }else{
               }
@@ -109,7 +145,7 @@ export class LoginPage implements OnInit {
 
            })
         }catch(err){
-          console.log(err);
+          //console.log(err);
         }
       }
 
@@ -127,13 +163,13 @@ export class LoginPage implements OnInit {
 
       this.view();
     }).catch(error =>{
-      ////console.log(error);
+      //////console.log(error);
     });
   }
   view(){
     this.crudservice.getEmployee().subscribe(
       res => {
-        ////console.log(res);
+        //////console.log(res);
         this.list = res;
       });
   }

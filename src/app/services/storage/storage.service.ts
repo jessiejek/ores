@@ -24,8 +24,10 @@ export class StorageService {
 
   // Get the value
   async get(storageKey: string) {
-    //console.log(storageKey);
+
     let data = localStorage.getItem(storageKey);
+
+
     if(data != null){
       return JSON.parse(this.aes.decrypt(localStorage.getItem(storageKey)));
     }else{
