@@ -11,13 +11,9 @@ export class MenuPage implements OnInit {
   constructor(    private screensizeService: ScreenSizeService) {
     this.screensizeService.isDesktopView().subscribe((isDesktop) => {
       if (this.isDesktop && !isDesktop) {
-        // Reload because our routing is out of place
-        //window.location.reload();
+        window.location.reload();
       }
-
       this.isDesktop = isDesktop;
-      console.log(this.isDesktop );
-
     });
   }
   public appPages = [

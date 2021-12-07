@@ -3,6 +3,9 @@ import { CrudService } from 'src/app/services/crud.service';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ScreenSizeService } from 'src/app/services/screen-size/screen-size.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -21,12 +24,23 @@ export class LoginPage implements OnInit {
     ]
   }
   validationFormUser: FormGroup;
+  isDesktop: boolean;
   constructor(
     public formbuider: FormBuilder,
     private router: Router,
     private nav: NavController,
-    private crudService:CrudService
-    ) { }
+    private crudService:CrudService,
+    private firestore: AngularFirestore,
+    private screensizeService: ScreenSizeService
+    ) {
+      this.screensizeService.isDesktopView().subscribe((isDesktop) => {
+        if (this.isDesktop && !isDesktop) {
+          window.location.reload();
+        }
+        this.isDesktop = isDesktop;
+        console.log(this.isDesktop );
+      });
+    }
 
 
     ngOnInit() {
@@ -46,9 +60,51 @@ export class LoginPage implements OnInit {
 
       }
 
-    LoginUser(value){
+      LoginUser(value){
+        console.log("Am logged in");
+        try{
+           this.crudService.loginFireauth(value).then( resp =>{
 
-    }
+          //  this.router.navigate(['tabs'])
+
+           if(resp.user){
+
+             this.crudService.setUser({
+               username : resp.user.displayName,
+               uid: resp.user.uid
+             })
+             console.log(resp.user.multiFactor.user);
+             console.log(resp.user.multiFactor.user.email);
+            const userProfile = this.firestore.collection('profile').doc(resp.user.uid);
+
+
+             userProfile.get().subscribe( result=>{
+
+
+
+
+              if(result.exists){
+                console.log('tabs');
+                this.nav.navigateForward(['menu']);
+              }else{
+
+                this.firestore.doc(`profile/${this.crudService.getUID()}`).set({
+                  name: resp.user.displayName,
+                  email: resp.user.email
+                });
+
+                 //this.nav.navigateForward(['uploadimage']);
+              }
+             })
+           }
+
+
+           })
+        }catch(err){
+          console.log(err);
+        }
+      }
+
 
 
     /*

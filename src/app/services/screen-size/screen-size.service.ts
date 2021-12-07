@@ -12,7 +12,6 @@ export class ScreenSizeService {
   constructor() {}
 
   onResize(size) {
-    console.log(size);
 
     if (size <= 767) {
       this.isDesktop.next(false);

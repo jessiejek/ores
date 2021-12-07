@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { CrudService } from './services/crud.service';
 import { CommonModule } from '@angular/common';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

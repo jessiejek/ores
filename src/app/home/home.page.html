@@ -8,7 +8,7 @@
 <ion-content>
 
 <ion-card class="ion-no-margin">
-  <ion-img src="assets/images/header.png"></ion-img>
+  <ion-img src="assets/images/header.png" *ngIf="!isDesktop"></ion-img>
   <ion-card-header>
   <ion-card-title>
      Welcome
@@ -25,9 +25,9 @@
         <ion-button  size="small" fill="solid" shape="round" class="loginbtn" (click)="gotoLoginpage()">
          Login
         </ion-button>
-        <ion-button  size="small" fill="outline" shape="round" color="light" (click)="registerUser()" >Sign Up</ion-button>
+        <!--ion-button  size="small" fill="outline" shape="round" color="light" (click)="registerUser()" >Sign Up</ion-button-->
       </div>
-      <div class="text-tag">
+      <!--div class="text-tag">
       <span>Or via Social Media</span>
       </div>
 
@@ -42,7 +42,7 @@
         <ion-img src="assets/images/apple.png"></ion-img>
           </ion-button>
 
-        </div>
+        </div-->
   </ion-card-content>
 
 </ion-card>

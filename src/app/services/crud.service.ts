@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
-
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 export  interface UserPro{
   username: string;
   uid: string;
@@ -21,7 +23,12 @@ export class CrudService {
 
 
     loginFireauth(value){
-
+      return new Promise<any> ( (resolve, reject)=>{
+        firebase.auth().signInWithEmailAndPassword(value.email, value.password).then(
+          res => resolve(res),
+          error => reject(error)
+        )
+      })
      }
 
      setUser(user: UserPro){
