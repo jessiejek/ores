@@ -99,14 +99,16 @@
 </div-->
 
 
-<ion-app>
+<ion-app *ngIf="!isDesktop">
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>test</ion-title>
+          </ion-toolbar>
+        </ion-header>
         <ion-list id="inbox-list">
-          <ion-list-header>OresPH</ion-list-header>
-          <!--ion-note>hi@ionicframework.com</ion-note-->
-
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" (click)="goto(p.url)" lines="none" detail="false" routerLinkActive="selected" *ngIf="p.url != '#'">
 
@@ -123,3 +125,49 @@
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
+
+
+<div *ngIf="isDesktop" class="desktop">
+  <!--ion-header mode="ios" class="ion-no-border custom-border-bottom" >
+    <ion-toolbar>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="2">
+          Logo
+        </ion-col>
+        <ion-col size="10">
+          <div class="navbar" class="ion-text-center chh-bg" >
+            <ion-button fill="clear" routerDirection="root" (click)="goto('/menu/overview')">Overview</ion-button>
+            <ion-button  fill="clear" routerDirection="root" (click)="goto('/menu/members')">Members</ion-button>
+            <ion-button fill="clear" routerDirection="root" (click)="goto('/menu/tickets')">Tickets</ion-button>
+            <ion-button  fill="clear" routerDirection="root" (click)="goto('/menu/settings')">Settings</ion-button>
+            <ion-button  fill="clear" routerDirection="root" (click)="goto('/out')">Logout</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-header-->
+  <ion-header mode="ios">
+    <ion-toolbar>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="2">
+          <img src="./assets/logo.png" class="logo ion-text-left">
+        </ion-col>
+        <ion-col size="10">
+          <div class="navbar" class="ion-text-center">
+            <ion-button fill="clear" routerDirection="root" (click)="goto('/menu/overview')"  class="link">Overview</ion-button>
+
+            <ion-button  fill="clear" routerDirection="root" (click)="goto('/menu/members')"   class="link">Members</ion-button>
+            <ion-button fill="clear" routerDirection="root" (click)="goto('/menu/tickets')"   class="link">Tickets</ion-button>
+            <ion-button  fill="clear" routerDirection="root" (click)="goto('/menu/settings')"   class="link">Settings</ion-button>
+            <ion-button  fill="clear" routerDirection="root" (click)="goto('/out')"   class="link">Logout</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-header>
+  <ion-router-outlet class="with-header"></ion-router-outlet>
+
+  <div class="footer tab-font-family">
+    <span>OresPh</span>
+  </div>
+</div>

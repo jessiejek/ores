@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ScreenSizeService } from '../services/screen-size/screen-size.service';
 
 @Component({
   selector: 'app-menu-overview',
@@ -6,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-overview.page.scss'],
 })
 export class MenuOverviewPage implements OnInit {
-
-  constructor() { }
+  isDesktop: boolean;
+  constructor(
+    private screensizeService: ScreenSizeService,
+    public router:Router
+  ) {
+    this.screensizeService.isDesktopView().subscribe((isDesktop) => {
+      if (this.isDesktop && !isDesktop) {
+        window.location.reload();
+      }
+      this.isDesktop = isDesktop;
+    });
+  }
 
   ngOnInit() {
   }

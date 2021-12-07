@@ -43,3 +43,32 @@
         background: #009444;
         border-radius: 10px;
       }
+
+      .desktop {
+        ion-router-outlet {
+          margin-top: 4.5%;
+          margin-bottom: 35px;
+        }
+
+        .logo {
+          max-height: 100%;
+        }
+
+
+
+        .link {
+          --color: #528d53;
+        }
+
+        .active-link {
+          --color: #275228;
+          border-bottom: 1px solid #275228;
+          font-weight: bold;
+        }
+
+      }
+
+      .with-header {
+        height: auto;
+        top: 12px;  // height of your app-header component
+      }
