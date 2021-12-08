@@ -17,6 +17,7 @@ import { CrudService } from './services/crud.service';
 import { CommonModule } from '@angular/common';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
 import { ChartModule } from 'angular-highcharts';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,13 @@ import { ChartModule } from 'angular-highcharts';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    ChartModule
+    ChartModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,},CrudService,ScreenSizeService],
   bootstrap: [AppComponent],
