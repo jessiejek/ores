@@ -8,13 +8,15 @@ import { MenuOverviewPageRoutingModule } from './menu-overview-routing.module';
 
 import { MenuOverviewPage } from './menu-overview.page';
 import { ChartModule } from 'angular-highcharts';
+import { TextAvatarModule } from '../components/text-avatar';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     MenuOverviewPageRoutingModule,
-    ChartModule
+    ChartModule,
+    TextAvatarModule
   ],
   declarations: [MenuOverviewPage]
 })

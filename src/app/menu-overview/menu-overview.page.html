@@ -23,17 +23,99 @@
 </ion-header>
 
 
+<ion-content *ngIf="!isDesktop">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card>
+          <ion-row>
+            <ion-col class="ion-text-center" >
+              <h3 >Users :</h3>
+            </ion-col>
+            </ion-row>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-row>
+            <ion-col  class="ion-text-center" >
+              <h3 >Low Risk :</h3>
+            </ion-col>
+            </ion-row>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-row>
+            <ion-col class="ion-text-center" >
+              <h3 >Mederate Risk :</h3>
+            </ion-col>
+            </ion-row>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-row>
+            <ion-col class="ion-text-center" >
+              <h3 >High Risk :</h3>
+            </ion-col>
+            </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size='12'>
+        <div [chart]="column"></div>
+        <br />
+      </ion-col>
+      <ion-col size='12' class="listofmemebers">
+        <ng-container >
+          <div *ngFor="let x of listOfMembers" >
+            <ion-card  mode="ios" class="pointer">
+              <ion-item lines="none">
+                <ion-avatar slot="start">
+                  <text-avatar [text]="x.name" [color]=""></text-avatar>
+                </ion-avatar>
+                <ion-label style="margin-top: -5px;">
+                  <ion-item slot="start" lines="none" class="ion-no-padding" style="padding-bottom: 5px;">
+                    <h2 class="ion-text-wrap" style="padding-top: 20px;">
+                      {{ x.name }}
+                    </h2>
+
+                  </ion-item>
+                  <ion-row class="ion-no-padding" lines="none" style="padding-top: 1px !important;">
+                    <p>
+
+                      <span>
+                        <ion-icon name="location-outline" slot="start"></ion-icon> {{x.address}}
+                      </span><br />
+                      <span>
+                        <ion-icon name="mail-outline" slot="start"></ion-icon> {{x.email}}
+                      </span>
+                    </p>
+                    <br />
+                  </ion-row>
+                </ion-label>
+              </ion-item>
+            </ion-card>
+          </div>
+        </ng-container>
+
+
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-grid>
+</ion-content>
 
 <ion-content *ngIf="isDesktop">
   <ion-grid>
     <ion-row>
       <ion-col size="10" offset="1" >
-
-
         <ion-grid>
           <ion-row>
-
-
             <ion-col size-md="3">
               <ion-card>
                 <ion-row>
@@ -41,7 +123,6 @@
                     <h3 >Users :</h3>
                   </ion-col>
                   </ion-row>
-
               </ion-card>
             </ion-col>
             <ion-col size-md="3">
@@ -51,7 +132,6 @@
                     <h3 >Low Risk :</h3>
                   </ion-col>
                   </ion-row>
-
               </ion-card>
             </ion-col>
             <ion-col size-md="3">
@@ -61,7 +141,6 @@
                     <h3 >Mederate Risk :</h3>
                   </ion-col>
                   </ion-row>
-
               </ion-card>
             </ion-col>
             <ion-col size-md="3">
@@ -71,27 +150,48 @@
                     <h3 >High Risk :</h3>
                   </ion-col>
                   </ion-row>
-
               </ion-card>
             </ion-col>
           </ion-row>
-
-
           <ion-row>
-            <ion-col size='6'>
-
-
+            <ion-col size='8'>
               <div [chart]="column"></div>
               <br />
             </ion-col>
-            <ion-col size='6'>
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="6" *ngFor="let x of maritalStatusCount1">
-                    <h3 >{{x.statusTitle}} : {{x.statusCount}}</h3>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
+            <ion-col size='4' class="listofmemebers">
+              <ng-container >
+                <div *ngFor="let x of listOfMembers" >
+                  <ion-card  mode="ios" class="pointer">
+                    <ion-item lines="none">
+                      <ion-avatar slot="start">
+                        <text-avatar [text]="x.name" [color]=""></text-avatar>
+                      </ion-avatar>
+                      <ion-label style="margin-top: -5px;">
+                        <ion-item slot="start" lines="none" class="ion-no-padding" style="padding-bottom: 5px;">
+                          <h2 class="ion-text-wrap" style="padding-top: 20px;">
+                            {{ x.name }}
+                          </h2>
+
+                        </ion-item>
+                        <ion-row class="ion-no-padding" lines="none" style="padding-top: 1px !important;">
+                          <p>
+
+                            <span>
+                              <ion-icon name="location-outline" slot="start"></ion-icon> {{x.address}}
+                            </span><br />
+                            <span>
+                              <ion-icon name="mail-outline" slot="start"></ion-icon> {{x.email}}
+                            </span>
+                          </p>
+                          <br />
+                        </ion-row>
+                      </ion-label>
+                    </ion-item>
+                  </ion-card>
+                </div>
+              </ng-container>
+
+
             </ion-col>
           </ion-row>
 

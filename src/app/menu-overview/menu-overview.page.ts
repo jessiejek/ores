@@ -36,7 +36,15 @@ export class MenuOverviewPage implements OnInit {
   }
   maritalStatusCount:any;
   maritalStatusCount1:any;
+  listOfMembers:any;
   ngOnInit() {
+
+    this.crudService.getData('users').subscribe(
+      res=>{
+        console.log(res);
+        this.listOfMembers=res;
+      }
+      );
     this.maritalStatusCount=[];
     let resP;
     this.crudService.getData('maritalStatusCount').subscribe(

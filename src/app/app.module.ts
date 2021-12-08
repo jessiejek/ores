@@ -17,6 +17,7 @@ import { CrudService } from './services/crud.service';
 import { CommonModule } from '@angular/common';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
 import { ChartModule } from 'angular-highcharts';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
