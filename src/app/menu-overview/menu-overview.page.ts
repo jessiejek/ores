@@ -22,6 +22,7 @@ import { jsonEval } from '@firebase/util';
 export class MenuOverviewPage implements OnInit {
   isDesktop: boolean;
   column:any;
+  pie:any;
   constructor(
     private screensizeService: ScreenSizeService,
     public router:Router,
@@ -120,6 +121,66 @@ export class MenuOverviewPage implements OnInit {
         ],  credits: { enabled: false },
         });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        let piechart = HighCharts.chart('asdasdasd', {
+          chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false,
+              type: 'pie'
+          },
+          title: {
+            text: 'Marital Status Count'
+          },
+          accessibility: {
+              point: {
+                  valueSuffix: '%'
+              }
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.y} <br /> {point.percentage:.1f} %'
+              }
+            }
+          },
+          series: [{
+              name: '',
+              colorByPoint: true,
+              type: undefined,
+              data: this.maritalStatusCount
+          }]
+      });
+
+      setTimeout(() => { piechart.reflow() }, 1000);
+
+
       }
       );
 
@@ -131,8 +192,16 @@ export class MenuOverviewPage implements OnInit {
 
 
 
-  }
 
+
+
+
+
+
+
+
+
+    }
 
 
 }

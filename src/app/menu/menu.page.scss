@@ -11,9 +11,7 @@
     max-height: 40px;
   }
 
-  ion-toolbar {
-    --background: #1f5bbc;
-  }
+
 
   .link {
     --color: var(--ion-color-light);
@@ -23,7 +21,11 @@
     --color: var(--ion-color-primary);
   }
 }
-
+.title{
+  background-color: #3880ff !important;
+  --background: #3880ff !important;
+  color: #fff;
+}
 .footer {
   width: 100%;
   color: #fff;
@@ -38,5 +40,20 @@
 
   ion-toolbar {
     //--background: primary;
+  }
+
+
+  ion-menu {
+   // --ion-background-color: var(--ion-color-primary);
+    //--ion-text-color: var(--ion-color-primary-contrast);
+
+    ion-toolbar {
+      --background: var(--ion-color-primary);
+      color: white;
+    }
+
+    ion-list {/* optional, but it needs when you use gradient as a background color.*/
+      //background: transparent;
+    }
   }
 
