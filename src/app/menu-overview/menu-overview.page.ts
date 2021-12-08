@@ -36,13 +36,19 @@ export class MenuOverviewPage implements OnInit {
   }
   maritalStatusCount:any;
   maritalStatusCount1:any;
-  listOfMembers:any;
+  patientData:any;
+  doRefresh(event) {
+    setTimeout(() => {
+      this.ngOnInit();
+      event.target.complete();
+    }, 1000);
+  }
   ngOnInit() {
 
-    this.crudService.getData('users').subscribe(
+    this.crudService.getData('patientData').subscribe(
       res=>{
         console.log(res);
-        this.listOfMembers=res;
+        this.patientData=res;
       }
       );
     this.maritalStatusCount=[];
@@ -113,6 +119,7 @@ export class MenuOverviewPage implements OnInit {
             }
         ],  credits: { enabled: false },
         });
+
       }
       );
 

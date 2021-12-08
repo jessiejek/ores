@@ -72,3 +72,11 @@
         height: auto;
         top: 30px;  // height of your app-header component
       }
+
+      :root {
+        --background-color: #ffffff;
+
+      }
+      body {
+        background-color: var(--background-color);
+    }

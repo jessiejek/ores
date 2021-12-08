@@ -20,6 +20,12 @@ export class MenuMembersPage implements OnInit {
     });
   }
   listOfMembers:any;
+  doRefresh(event) {
+    setTimeout(() => {
+      this.ngOnInit();
+      event.target.complete();
+    }, 1000);
+  }
   ngOnInit() {
 
     this.crudService.getData('users').subscribe(
