@@ -156,7 +156,7 @@ export class MenuOverviewPage implements OnInit {
     //this.populateHeatMap();
 
     if(this.gender != undefined && this.type != undefined && this.age != undefined ){
-
+this.dataprofile22=[];
       this.v00=0;this.v01=0;this.v02=0;this.v03=0;this.v04=0;
       this.v10=0;this.v11=0;this.v12=0;this.v13=0;this.v14=0;
       this.v20=0;this.v21=0;this.v22=0;this.v23=0;this.v24=0;
@@ -164,26 +164,30 @@ export class MenuOverviewPage implements OnInit {
       this.v40=0;this.v41=0;this.v42=0;this.v43=0;this.v44=0;
 
       //this.populateHeatMap();
+      let dataasdasda:any;
       this.crudService.getHeatMapData('data-profile2',this.gender,this.type,this.age).subscribe(
         res=>{
           if (res.docs.length === 0) {
           } else {
             res.docs.forEach(doc => {
-              this.dataprofile2.push(doc.data());
+              this.dataprofile22.push(doc.data());
+
             })
           }
 
         },(error) => {
 
         },() =>{
-         // //console.log('done');
-          console.log(this.dataprofile2.length);
-
-          this.dataprofile2.forEach(element => {
+          this.v00=0;this.v01=0;this.v02=0;this.v03=0;this.v04=0;
+          this.v10=0;this.v11=0;this.v12=0;this.v13=0;this.v14=0;
+          this.v20=0;this.v21=0;this.v22=0;this.v23=0;this.v24=0;
+          this.v30=0;this.v31=0;this.v32=0;this.v33=0;this.v34=0;
+          this.v40=0;this.v41=0;this.v42=0;this.v43=0;this.v44=0;
+          this.dataprofile22.forEach(element => {
             let CHOLES = (element['CHOL(mgdL) Normal Value < 200 mgdL']/38.67);
             let SBP = element['SBP'];
 
-            console.log(SBP+ ' | '+CHOLES);
+
 
             if( SBP >= 180 && CHOLES >= 4 && CHOLES < 5 ){
               this.v00 += 1;
@@ -244,6 +248,8 @@ export class MenuOverviewPage implements OnInit {
             }else if(SBP >= 110 && SBP < 120 && CHOLES >= 8){
               this.v44 += 1;
             }
+
+
             /*//console.log(
               'Smoker? : '+ element['SMOKING'] +' | '+
               'Age : '+element['AGE']+' | '+
@@ -260,7 +266,7 @@ export class MenuOverviewPage implements OnInit {
     }
   }
   dataprofile2:any;
-
+  dataprofile22:any;
 
 
 
