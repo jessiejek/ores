@@ -378,7 +378,9 @@ export class MenuOverviewPage implements OnInit {
 
 
 
-
+    HighCharts.setOptions({
+      colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+     });
 
 
     function getPointCategoryName(point, dimension) {
@@ -419,6 +421,20 @@ export class MenuOverviewPage implements OnInit {
         minColor: '#FFFFFF',
         maxColor: HighCharts.getOptions().colors[0]
       },
+      /*
+          colorAxis: {
+        min: -10,
+        max: 7,
+        endOnTick: false,
+        startOnTick: false,
+        tickInterval: 2,
+        stops: [
+            [0, '#ff0000'], //red
+            [0.588, '#ffffff'], //white
+            [1, '#0000ff'] //blue
+        ]
+    },
+      */
 
 
 
@@ -428,6 +444,7 @@ export class MenuOverviewPage implements OnInit {
 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
         }
       },
+
       series: [{
         name: 'Sales per employee',
         borderWidth: 1,
