@@ -377,11 +377,11 @@ export class MenuOverviewPage implements OnInit {
 
 
 
-
+/*
     HighCharts.setOptions({
       colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
      });
-
+*/
 
     function getPointCategoryName(point, dimension) {
       var series = point.series,
