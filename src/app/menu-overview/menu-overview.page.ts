@@ -23,6 +23,9 @@ export class MenuOverviewPage implements OnInit {
   isDesktop: boolean;
   column: any;
   pie: any;
+  gender:any = 'M';
+  type:any = 'Current Smoker';
+  age:any = '20';
   constructor(
     private screensizeService: ScreenSizeService,
     public router: Router,
@@ -48,7 +51,7 @@ export class MenuOverviewPage implements OnInit {
 
     this.crudService.getData('patientData').subscribe(
       res => {
-        console.log(res);
+        //console.log(res);
         this.patientData = res;
       }
     );
@@ -71,15 +74,52 @@ export class MenuOverviewPage implements OnInit {
         this.populateColumnChart();
 
         this.populatePieChart();
-        this.populateHeatMap();
+        this.dataChange('a');
 
 
 
 
 
 
+        this.dataprofile2=[];
+        this.crudService.getDocsByParam('data-profile2','MARITAL STATUS','==','MARRIED').subscribe(
+          (res)=>{
+            if (res.docs.length === 0) {
+              // //console.log('Document not found! Try again!');
 
+              //this.message = 'Document not found! Try again!';
+              //this.single = null;
+            } else {
+              res.docs.forEach(doc => {
+                //this.message = '';
+                //this.single = doc.data();
+                ////console.log(doc.data());
+                this.dataprofile2.push(doc.data());
+              })
+            }
 
+          },(error) => {
+
+          },() =>{
+           // //console.log('done');
+            ////console.log(this.dataprofile2);
+
+            this.dataprofile2.forEach(element => {
+              let smoking:any="yes";
+              if(element['SMOKING'].indexOf("Never")){
+                smoking = "no";
+              }
+              /*//console.log(
+                'Smoker? : '+ element['SMOKING'] +' | '+
+                'Age : '+element['AGE']+' | '+
+                'Chole : '+ (element['CHOL(mgdL) Normal Value < 200 mgdL']/38.67).toFixed(2) + ' | ' +
+                'SBP : ' + element['SBP']
+
+                );*/
+
+            });
+          }
+        );
 
 
 
@@ -101,27 +141,125 @@ export class MenuOverviewPage implements OnInit {
 
       }
     );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
 
+  v00=0;v01=0;v02=0;v03=0;v04=0;
+  v10=0;v11=0;v12=0;v13=0;v14=0;
+  v20=0;v21=0;v22=0;v23=0;v24=0;
+  v30=0;v31=0;v32=0;v33=0;v34=0;
+  v40=0;v41=0;v42=0;v43=0;v44=0;
+  dataChange(data){
 
+    if(this.heatMap != undefined){
+      this.heatMap.destroy();
+    }
+    //this.populateHeatMap();
+
+    if(this.gender != undefined && this.type != undefined && this.age != undefined ){
+
+      this.v00=0;this.v01=0;this.v02=0;this.v03=0;this.v04=0;
+      this.v10=0;this.v11=0;this.v12=0;this.v13=0;this.v14=0;
+      this.v20=0;this.v21=0;this.v22=0;this.v23=0;this.v24=0;
+      this.v30=0;this.v31=0;this.v32=0;this.v33=0;this.v34=0;
+      this.v40=0;this.v41=0;this.v42=0;this.v43=0;this.v44=0;
+
+      //this.populateHeatMap();
+      this.crudService.getHeatMapData('data-profile2',this.gender,this.type,this.age).subscribe(
+        res=>{
+          if (res.docs.length === 0) {
+          } else {
+            res.docs.forEach(doc => {
+              this.dataprofile2.push(doc.data());
+            })
+          }
+
+        },(error) => {
+
+        },() =>{
+         // //console.log('done');
+          console.log(this.dataprofile2.length);
+
+          this.dataprofile2.forEach(element => {
+            let CHOLES = (element['CHOL(mgdL) Normal Value < 200 mgdL']/38.67);
+            let SBP = element['SBP'];
+
+            console.log(SBP+ ' | '+CHOLES);
+
+            if( SBP >= 180 && CHOLES >= 4 && CHOLES < 5 ){
+              this.v00 += 1;
+            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 4 && CHOLES < 5){
+              this.v01 += 1;
+            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 4 && CHOLES < 5){
+              this.v02 += 1;
+            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 4 && CHOLES < 5){
+              this.v03 += 1;
+            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 4 && CHOLES < 5){
+              this.v04 += 1;
+            }
+
+            if( SBP >= 180 && CHOLES >= 5 && CHOLES < 6 ){
+              this.v10 += 1;
+            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 5 && CHOLES < 6){
+              this.v11 += 1;
+            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 5 && CHOLES < 6){
+              this.v12 += 1;
+            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 5 && CHOLES < 6){
+              this.v13 += 1;
+            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 5 && CHOLES < 6){
+              this.v14 += 1;
+            }
+
+            if( SBP >= 180 &&                   CHOLES >= 6 && CHOLES < 7 ){
+              this.v20 += 1;
+            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 6 && CHOLES < 7){
+              this.v21 += 1;
+            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 6 && CHOLES < 7){
+              this.v22 += 1;
+            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 6 && CHOLES < 7){
+              this.v23 += 1;
+            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 6 && CHOLES < 7){
+              this.v24 += 1;
+            }
+
+            if( SBP >= 180 &&                   CHOLES >= 7 && CHOLES < 8 ){
+              this.v30 += 1;
+            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 7 && CHOLES < 8){
+              this.v31 += 1;
+            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 7 && CHOLES < 8){
+              this.v32 += 1;
+            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 7 && CHOLES < 8){
+              this.v33 += 1;
+            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 7 && CHOLES < 8){
+              this.v34 += 1;
+            }
+
+            if( SBP >= 180 &&                   CHOLES >= 8 ){
+              this.v40 += 1;
+            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 8 ){
+              this.v41 += 1;
+            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 8 ){
+              this.v42 += 1;
+            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 8){
+              this.v43 += 1;
+            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 8){
+              this.v44 += 1;
+            }
+            /*//console.log(
+              'Smoker? : '+ element['SMOKING'] +' | '+
+              'Age : '+element['AGE']+' | '+
+              'Chole : '+ (element['CHOL(mgdL) Normal Value < 200 mgdL']/38.67).toFixed(2) + ' | ' +
+              'SBP : ' + element['SBP']
+
+              );*/
+
+          });
+
+          this.populateHeatMap();
+        }
+      );
+    }
+  }
+  dataprofile2:any;
 
 
 
@@ -136,7 +274,7 @@ export class MenuOverviewPage implements OnInit {
 
 
   populateColumnChart() {
-    console.log(this.maritalStatusCount);
+    //console.log(this.maritalStatusCount);
     this.column = new Chart({
       chart: {
         type: "column",
@@ -234,7 +372,7 @@ export class MenuOverviewPage implements OnInit {
     setTimeout(() => { piechart.reflow() }, 1000);
   }
 
-
+  heatMap:any;
   populateHeatMap(){
 
 
@@ -250,7 +388,7 @@ export class MenuOverviewPage implements OnInit {
       return axis.categories[point[isY ? 'y' : 'x']];
     }
 
-    HighCharts.chart('heatmap', {
+    this.heatMap = HighCharts.chart('heatmap', {
 
       chart: {
         type: 'heatmap',
@@ -261,30 +399,20 @@ export class MenuOverviewPage implements OnInit {
 
 
       title: {
-        text: 'Sales per employee per weekday'
+        text: 'WPR B People w/ Diab'
       },
 
       xAxis: {
-        categories: ['Alexander', 'Marie', 'Maximilian', 'Sophia', 'Lukas', 'Maria', 'Leon', 'Anna', 'Tim', 'Laura']
+        categories: ['4', '5', '6', '7', '8']
       },
 
       yAxis: {
-        categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        categories: ['180', '160', '140', '120', '110'],
         title: null,
         reversed: true
       },
 
-      accessibility: {
-        point: {
-          descriptionFormatter: function (point) {
-            var ix = point.index + 1,
-              xName = getPointCategoryName(point, 'x'),
-              yName = getPointCategoryName(point, 'y'),
-              val = point.value;
-            return ix + '. ' + xName + ' sales ' + yName + ', ' + val + '.';
-          }
-        }
-      },
+
 
       colorAxis: {
         min: 0,
@@ -292,26 +420,26 @@ export class MenuOverviewPage implements OnInit {
         maxColor: HighCharts.getOptions().colors[0]
       },
 
-      legend: {
-        align: 'right',
-        layout: 'vertical',
-        margin: 0,
-        verticalAlign: 'top',
-        y: 25,
-        symbolHeight: 280
-      },
+
 
       tooltip: {
         formatter: function () {
-          return '<b>' + getPointCategoryName(this.point, 'x') + '</b> sold <br><b>' +
-            this.point.value + '</b> items on <br><b>' + getPointCategoryName(this.point, 'y') + '</b>';
+          return '<b>' +getPointCategoryName(this.point, 'y')+' SBP <br />' +
+getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
         }
       },
       series: [{
         name: 'Sales per employee',
         borderWidth: 1,
         type: undefined,
-        data: [[0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67], [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48], [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52], [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16], [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115], [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120], [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96], [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30], [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84], [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]],
+        data: [
+          [0, 0, this.v00], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
+          [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
+          [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
+          [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
+          [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
+
+          ],
         dataLabels: {
           enabled: true,
           color: '#000000'
@@ -321,7 +449,7 @@ export class MenuOverviewPage implements OnInit {
 
 
     });
-
+    setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
 
 

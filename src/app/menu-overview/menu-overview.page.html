@@ -91,6 +91,41 @@
               <ion-col size='12'>
 
                 <ion-card   mode="ios"  class="pointer">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col>
+                        <ion-item>
+                          <ion-label>Gender</ion-label>
+                          <ion-select [(ngModel)]="gender"  (ionChange)="dataChange($event)">
+                            <ion-select-option value="M" selected>Male</ion-select-option>
+                            <ion-select-option value="F">Female</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+                      </ion-col>
+                      <ion-col>
+                        <ion-item>
+                          <ion-label>Type</ion-label>
+                          <ion-select [(ngModel)]="type" (ionChange)="dataChange($event)">
+                            <ion-select-option value="Current Smoker" selected>Smoker</ion-select-option>
+                            <ion-select-option value="Never smoked">Non - Smoker</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+                      </ion-col>
+                      <ion-col>
+                        <ion-item>
+                          <ion-label>Age</ion-label>
+                          <ion-select [(ngModel)]="age" (ionChange)="dataChange($event)">
+                            <ion-select-option value="20" selected>20+</ion-select-option>
+                            <ion-select-option value="30" >30+</ion-select-option>
+                            <ion-select-option value="40" >40+</ion-select-option>
+                            <ion-select-option value="50">50+</ion-select-option>
+                            <ion-select-option value="60">60+</ion-select-option>
+                            <ion-select-option value="70">70+</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
                   <div id="heatmap" ></div>
                 </ion-card>
               </ion-col>

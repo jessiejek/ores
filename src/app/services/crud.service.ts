@@ -50,7 +50,23 @@ export class CrudService {
 
 
 
-
+     getDocsByParam(collect, getParam:string, operator:any ,paramValue:string ) {
+        return this.fireservices.collection(
+          collect,
+          ref => ref.where(getParam, operator, paramValue)
+          ).get();
+    }
+    getHeatMapData(collect,gender,type,age){
+      let ageage = age +10;
+    return this.fireservices.collection(
+      collect,
+      ref => ref
+                .where('SEX', '==', gender)
+                .where('AGE', '>=', parseFloat(age))
+                .where('AGE', '<=', parseFloat(ageage))
+                .where('SMOKING', '==', type)
+    ).get();
+    }
 
 
 
