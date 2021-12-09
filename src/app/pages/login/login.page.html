@@ -2,10 +2,10 @@
   <div id="header">
     <div id="logo">
       <h1>
-        Ores.ph
+        Logo
       </h1>
 
-      <img src="assets/images/ORESPH.png">
+
       <!--img src="assets/img/doctors-rafiki-simple-wo-shadow.svg" alt="doctors" /-->
     </div>
   </div>
@@ -23,6 +23,19 @@
           class="my-custom-slider"
         >
           <ion-card class="form-wrapper">
+
+
+
+              <ion-grid>
+                <ion-row>
+                  <ion-col size=4><img src="assets/images/ORESPH.png"></ion-col>
+                  <ion-col size=8>
+                    <div style="height: 100%; display: flex; align-items: center; justify-content: left;">
+                    <h1>Ores.ph</h1>
+                  </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
 
 
             <ion-card-content>
@@ -68,22 +81,6 @@
                     <ion-button  expand="block" type="submit"  fill="solid" class="sign-btn" [disabled]="!validationFormUser.valid" >Login</ion-button>
                    </div>
 
-                   <!--div class="text-tag">
-                   <span>Or via Social Media</span>
-                   </div>
-
-                   <div class="social-btns">
-                       <ion-button fill="clear"  class="facebookbtn ion-no-padding">
-                     <ion-img src="assets/images/facebook.png"></ion-img>
-                       </ion-button>
-                       <ion-button fill="clear"  class="googlebtn ion-no-padding">
-                     <ion-img src="assets/images/google.png"></ion-img>
-                       </ion-button>
-                       <ion-button fill="clear"  class="applebtn ion-no-padding">
-                     <ion-img src="assets/images/apple.png"></ion-img>
-                       </ion-button>
-
-                     </div-->
 
 
 
@@ -105,6 +102,23 @@
 
             </ion-card-content>
           </ion-card>
+
+          <div class="text-tag" style="display: flex; align-items: center; justify-content: center;">
+            <span>Or via Social Media</span>
+            </div>
+
+            <div class="social-btns" style="display: flex; align-items: center; justify-content: center;">
+                <ion-button fill="clear"  class="facebookbtn ion-no-padding">
+              <ion-img src="assets/images/facebook.png"></ion-img>
+                </ion-button>
+                <ion-button fill="clear"  class="googlebtn ion-no-padding">
+              <ion-img src="assets/images/google.png"></ion-img>
+                </ion-button>
+                <ion-button fill="clear"  class="applebtn ion-no-padding">
+              <ion-img src="assets/images/apple.png"></ion-img>
+                </ion-button>
+
+              </div>
         </ion-col>
       </ion-row>
     </ion-grid>
