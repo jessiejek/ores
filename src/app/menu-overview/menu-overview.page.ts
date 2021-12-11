@@ -71,7 +71,7 @@ export class MenuOverviewPage implements OnInit {
 
 
 
-        this.populateColumnChart();
+
 
         this.populatePieChart();
         this.dataChange('a');
