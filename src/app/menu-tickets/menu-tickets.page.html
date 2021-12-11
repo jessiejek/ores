@@ -52,8 +52,14 @@
     <br><br>
     <button type="button" class="btn btn-info" (click)="upload()" >Convert to JSON</button>
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+
+
     <ion-input type="file" (change)="incomingfile($event)"></ion-input>
     <ion-button (click)="upload()">Upload</ion-button>
+
+
+
     <br><br>
     <div class="jumbotron json_container">
       <h5>Output:</h5><br>

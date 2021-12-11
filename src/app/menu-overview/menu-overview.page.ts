@@ -165,11 +165,13 @@ this.dataprofile22=[];
 
       //this.populateHeatMap();
       let dataasdasda:any;
-      this.crudService.getHeatMapData('data-profile2',this.gender,this.type,this.age).subscribe(
+      this.crudService.getHeatMapData('testAdd4',this.gender,this.type,this.age).subscribe(
         res=>{
           if (res.docs.length === 0) {
           } else {
             res.docs.forEach(doc => {
+
+
               this.dataprofile22.push(doc.data());
 
             })
@@ -184,9 +186,12 @@ this.dataprofile22=[];
           this.v30=0;this.v31=0;this.v32=0;this.v33=0;this.v34=0;
           this.v40=0;this.v41=0;this.v42=0;this.v43=0;this.v44=0;
           this.dataprofile22.forEach(element => {
-            let CHOLES = (element['CHOL(mgdL) Normal Value < 200 mgdL']/38.67);
+            console.log(element);
+
+            let CHOLES = (element['CHOL(mg/dL) Normal Value < 200 mg/dL']/38.67);
             let SBP = element['SBP'];
 
+            console.log(CHOLES +' : '+SBP);
 
 
             if( SBP >= 180 && CHOLES >= 4 && CHOLES < 5 ){
@@ -259,6 +264,7 @@ this.dataprofile22=[];
               );*/
 
           });
+         // console.log(this.dataprofile22);
 
           this.populateHeatMap();
         }

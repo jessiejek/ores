@@ -89,6 +89,8 @@ export class LoginPage implements OnInit {
       }
 
       LoginUser(value){
+        console.log(value);
+
         //////console.log("Am logged in");
         try{
            this.crudService.loginFireauth(value).then( resp =>{

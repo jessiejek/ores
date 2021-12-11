@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../services/crud.service';
 import { ScreenSizeService } from '../services/screen-size/screen-size.service';
-
+import {AddusersComponent} from '../components/addusers/addusers.component';
+import { ModalController } from '@ionic/angular';
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-menu-members',
   templateUrl: './menu-members.page.html',
@@ -9,8 +11,11 @@ import { ScreenSizeService } from '../services/screen-size/screen-size.service';
 })
 export class MenuMembersPage implements OnInit {
   isDesktop:boolean;
-  constructor(    private crudService:CrudService,
-    public screensizeService:ScreenSizeService) {
+  constructor(
+    private crudService:CrudService,
+    public screensizeService:ScreenSizeService,
+    public modalController:ModalController,
+    private formBuilder: FormBuilder) {
     this.screensizeService.isDesktopView().subscribe((isDesktop) => {
       if (this.isDesktop && !isDesktop) {
         window.location.reload();
@@ -19,6 +24,7 @@ export class MenuMembersPage implements OnInit {
       //////console.log(this.isDesktop );
     });
   }
+
   listOfMembers:any;
   doRefresh(event) {
     setTimeout(() => {
@@ -27,18 +33,19 @@ export class MenuMembersPage implements OnInit {
     }, 1000);
   }
   ngOnInit() {
-    this.listOfMembers=[];
+
     this.crudService.getDataAggregate('patientData').subscribe(
       res=>{
-        console.log(res);
-        res.forEach(el => {
-
-          console.log(JSON.stringify(el));
-
-        })
+        this.listOfMembers=res;
       }
       );
 
   }
-
+  async addUser(){
+      const modal = await this.modalController.create({
+        component: AddusersComponent,
+        cssClass: 'my-custom-class',
+      });
+      return await modal.present();
+  }
 }

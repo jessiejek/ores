@@ -12,7 +12,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule} from '@angular/fire/compat/database'
 import { AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CrudService } from './services/crud.service';
 import { CommonModule } from '@angular/common';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
@@ -32,6 +32,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     ChartModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

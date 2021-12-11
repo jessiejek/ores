@@ -1,0 +1,157 @@
+<ion-header mode="md" class="ion-no-border">
+  <div >
+    <ion-toolbar color="primary">
+      <ion-title>
+        <ion-icon name="add-circle-outline"></ion-icon> Add Users
+      </ion-title>
+      <ion-buttons
+        slot="end"
+        class="buttons-last-slot sc-ion-buttons-ios-h sc-ion-buttons-ios-s ios hydrated"
+      >
+        <ion-button
+          (click)="closeModal()"
+          color="danger"
+          class="ios button button-clear ion-activatable ion-focusable hydrated"
+          ><ion-icon name="close-outline" size="large"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+</ion-header>
+
+
+
+
+<ion-content>
+
+
+
+
+
+
+
+
+
+<ion-item>
+
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-no-padding">
+      <ion-col size="12"  >
+
+
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()"  >
+
+
+
+            <div class="form-row mb-4">
+                <div class="col">
+                  <ion-input type="text" formControlName="firstName"  placeholder="First name"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="lastName"  placeholder="Last name"></ion-input>
+                </div>
+
+                <div class="col">
+                  <ion-input type="text" formControlName="email"  placeholder="Email"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="password" formControlName="password"  placeholder="Password"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="address"  placeholder="Address"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-item>
+                    <ion-label>Admin Status</ion-label>
+                    <ion-select placeholder="Select One" formControlName="adminStatus" >
+                      <ion-select-option value="Admin">Admin</ion-select-option>
+                      <ion-select-option value="notAdmin" selected>Not Admin</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col">
+                  <ion-item>
+                    <ion-label>Nurse Status</ion-label>
+                    <ion-select placeholder="Select One" formControlName="nurseStatus" >
+                      <ion-select-option value="nurse">Nurse</ion-select-option>
+                      <ion-select-option value="notNurse" selected>Not Nurse</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col">
+                  <ion-item>
+                    <ion-label>Patient Status</ion-label>
+                    <ion-select placeholder="Select One" formControlName="patientStatus" >
+                      <ion-select-option value="patient">Patient</ion-select-option>
+                      <ion-select-option value="notPatient" selected>Not Patient</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="age"  placeholder="Age"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="cholesterol"  placeholder="Cholesterol"></ion-input>
+                </div>
+
+
+
+
+                <div class="col">
+                  <ion-input type="text" formControlName="diabetesMelitus"  placeholder="DiabetesMelitus"></ion-input>
+                </div>
+
+                <div class="col">
+                  <ion-input type="text" formControlName="education"  placeholder="Education"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="employment"  placeholder="Employment"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="hypertension"  placeholder="Hypertension"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="income"  placeholder="Income"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="maritalStatus"  placeholder="Marital Status"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-label>Sex</ion-label>
+                  <ion-select placeholder="Select One" formControlName="sex" >
+                    <ion-select-option value="Male">Male</ion-select-option>
+                    <ion-select-option value="Female" selected>Female</ion-select-option>
+                  </ion-select>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="diastolicBloodPressure"  placeholder="Diastolic Blood Pressure"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="systolicBloodPressure"  placeholder="Systolic Blood Pressure"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="waistToHipRatio"  placeholder="Waist To Hip Ratio"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input type="text" formControlName="waistlineCircumference"  placeholder="Waistline Circumference"></ion-input>
+                </div>
+                <div class="col">
+
+<ion-button expand="block" type="submit">Block Button</ion-button>
+                </div>
+
+            </div>
+
+
+
+
+            <hr>
+
+          </form>
+
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-item>
+  </ion-content>

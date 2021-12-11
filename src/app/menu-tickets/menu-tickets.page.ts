@@ -71,7 +71,8 @@ export class MenuTicketsPage implements OnInit {
       //console.log(result);
       let JSONresult  = JSON.parse(result);
       JSONresult.forEach(el => {
-        this.crudService.createNewEmplyoee(el);
+       // this.crudService.createNewEmplyoee(el);
+          this.crudService.addToCollection('testAdd4',el);
 
       });
   }

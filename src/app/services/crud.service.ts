@@ -97,17 +97,69 @@ export class CrudService {
 
 
 
+  addMembersAUTH(data){
+    let xx = '['+JSON.stringify(data)+']';
+    let yy = JSON.parse(xx);
+    let email;
+    let password;
+    yy.forEach(element => {
+      email = element.email;
+      password = element.password;
+        //uid = this.SignUp(element.email,element.password);
+    });
+    this.SignUp(email,password).then(res => {
+      console.log('You are Successfully signed up!', res);
+      console.log(res.user.uid);
+      this.addMembersUsers(yy,res.user.uid);
+      this.addMembersPatientData(yy,res.user.uid);
+      //return res.user.uid;
+    }).catch(error => {
+      console.log('Something is wrong:', error.message);
+    });
 
 
-  createNewEmplyoee(Record){
-
-   // let record = '{"LAST NAME":"name last","FIRST NAME":"name first","MIDDLE NAME":"name middel","EMPLOYEE NUMBER":13969,"PRINCIPAL OR DEPENDENT":"Principal","AGE":34,"SEX":"F","GENDER":"F","MARITAL STATUS":"MARRIED","ADDRESS (CITY)":"PASAY","EDUCATION":"COLLEGE","EMPLOYMENT":"PRIVATE","INCOME":"Above 400, 000 to 800,000","RANK":"Trainer","UNIT":"Back office","TENURE":"<1 year","SBP":125,"DBP":85,"CHOL(mg/dL) Normal Value < 200 mg/dL":200,"HDL (mg/dL) Normal Value 40-60 mg/dL":42,"FBS (mg/dL) Normal Value 70-100 mg/dL":85,"Urine Ketone Normal value: Negative":"Negative","WC (cm)":75,"W/H RATIO":0.7,"HPN":"No","DM":"No","HPN + DM":"CAN WE MAKE AS FORMULA","SMOKING":"Never smoked","ALCOHOL INTAKE":"Occasional Drinker","PHYSICAL ACTIVITY":"No Exercise","DIETARY INTAKE":"High Salt"}';
-
-    //record = JSON.parse(record);
 
 
-//this.fireservices.collection('Employee').get();
-    return this.fireservices.collection('testAdd4').add(Record);
+  }
+  addMembersUsers(data,id){
+    let users={};
+    data.forEach(element => {
+      users['id'] = id;
+      users['address'] = element.address;
+      users['adminStatus'] = element.adminStatus;
+      users['email'] = element.email;
+      users['name'] = element.firstName+' '+element.lastName;
+      users['nurseStatus'] = element.nurseStatus;
+      users['patientStatus'] = element.patientStatus;
+    });
+    //this.addToCollection('users',users);
+    this.fireservices.collection('users').doc(id).set(users);
+    //this.fireservices.collection('users').add(users);
+  }
+  addMembersPatientData(data,id){
+    let patientData={};
+    data.forEach(element => {
+      patientData['id'] = id;
+      patientData['age'] = element.age;
+      patientData['cholesterol'] = element.cholesterol;
+      patientData['diabetesMelitus'] = element.diabetesMelitus;
+      patientData['diastolicBloodPressure'] = element.diastolicBloodPressure;
+      patientData['education'] = element.education;
+      patientData['employment'] = element.employment;
+      patientData['hypertension'] = element.hypertension;
+      patientData['income'] = element.income;
+      patientData['maritalStatus'] = element.maritalStatus;
+      patientData['name'] = element.firstName+' '+element.lastName;
+      patientData['sex'] = element.sex;
+      patientData['systolicBloodPressure'] = element.systolicBloodPressure;
+      patientData['waistToHipRatio'] = element.waistToHipRatio;
+      patientData['waistlineCircumference'] = element.waistlineCircumference;
+    });
+    console.log(patientData);
+
+    this.fireservices.collection('patientData').doc(id).set(patientData);
+
+
   }
 
 
@@ -116,9 +168,31 @@ export class CrudService {
 
 
 
+
+
+
+
+
+
+
+  createNewEmplyoee(Record){
+    return this.fireservices.collection('testAdd4').add(Record);
+  }
+
+
+
+  addToCollection(collection,Record){
+    return this.fireservices.collection(collection).add(Record);
+  }
+
+
+
   SignUp(email: string, password: string) {
+    return this.angularFireAuth.createUserWithEmailAndPassword(email, password);
     this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(res => {
       console.log('You are Successfully signed up!', res);
+      console.log(res.user.uid);
+      return res.user.uid;
     })
     .catch(error => {
       console.log('Something is wrong:', error.message);
