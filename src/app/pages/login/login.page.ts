@@ -106,42 +106,52 @@ export class LoginPage implements OnInit {
              });*/
              let record = {};
 
-
+             let adminstatus;
              this.crudService.getUserInfo('users',resp.user.uid).subscribe(
               res=>{
+                console.log(res);
+
                 let x = JSON.stringify(res);
                 let parsedData = JSON.parse('['+x+']');
+                adminstatus = parsedData[0].adminStatus;
                if(parsedData){
                   record['address'] = parsedData[0].address;
                   record['adminStatus'] = parsedData[0].adminStatus;
                   record['name'] = parsedData[0].name;
+                  record['email'] = resp.user.multiFactor.user.email;
+                  record['uid'] = resp.user.multiFactor.user.uid;
+                  record['accessToken'] = resp.user.multiFactor.user.accessToken;
+                  console.log(adminstatus);
+
+                  if(adminstatus){
+                   this.storageService.store(AuthConstants.AUTH, JSON.stringify(record));
+                   if(this.rememberMe){
+                     let valueToSave = JSON.stringify(value);
+                     valueToSave = '['+valueToSave+']';
+                     this.storageService.store(AuthConstants.RememberMe, (valueToSave));
+                   }
+                   this.nav.navigateForward(['menu']);
+                 }else{
+                 }
                 }
 
               }
               );
-             record['email'] = resp.user.multiFactor.user.email;
-             record['uid'] = resp.user.multiFactor.user.uid;
-             record['accessToken'] = resp.user.multiFactor.user.accessToken;
+
+            /*
             const userProfile = this.firestore.collection('profile').doc(resp.user.uid);
              userProfile.get().subscribe( result=>{
               if(result.exists){
                 this.storageService.store(AuthConstants.AUTH, JSON.stringify(record));
-
                 if(this.rememberMe){
-                  //this.storageService.store(AuthConstants.RememberMe, value);
-                  //console.log(value);
-
-                  //console.log(JSON.stringify(value));
                   let valueToSave = JSON.stringify(value);
                   valueToSave = '['+valueToSave+']';
-                  //console.log(valueToSave);
-
                   this.storageService.store(AuthConstants.RememberMe, (valueToSave));
                 }
                 this.nav.navigateForward(['menu']);
               }else{
               }
-             })
+             })*/
            }
 
 

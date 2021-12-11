@@ -123,14 +123,32 @@ export class CrudService {
   }
   addMembersUsers(data,id){
     let users={};
+    let adminStatus;
+    let nurseStatus
+    let patientStatus
     data.forEach(element => {
+      if(element.adminStatus == 'true'){
+        adminStatus=true;
+      }else{
+        adminStatus=false;
+      }
+      if(element.nurseStatus == 'true'){
+        nurseStatus=true;
+      }else{
+        nurseStatus=false;
+      }
+      if(element.patientStatus == 'true'){
+        patientStatus=true;
+      }else{
+        patientStatus=false;
+      }
       users['id'] = id;
       users['address'] = element.address;
-      users['adminStatus'] = element.adminStatus;
+      users['adminStatus'] = adminStatus;
       users['email'] = element.email;
       users['name'] = element.firstName+' '+element.lastName;
-      users['nurseStatus'] = element.nurseStatus;
-      users['patientStatus'] = element.patientStatus;
+      users['nurseStatus'] = nurseStatus;
+      users['patientStatus'] = patientStatus;
     });
     //this.addToCollection('users',users);
     this.fireservices.collection('users').doc(id).set(users);

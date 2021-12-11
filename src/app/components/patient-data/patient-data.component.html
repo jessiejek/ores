@@ -3,12 +3,12 @@
     <ion-card  mode="ios" class="pointer">
       <ion-item lines="none">
         <ion-avatar slot="start">
-          <text-avatar [text]="x.name" [color]=""></text-avatar>
+          <text-avatar [text]="x['LAST NAME']" [color]=""></text-avatar>
         </ion-avatar>
         <ion-label style="margin-top: -5px;">
           <ion-item slot="start" lines="none" class="ion-no-padding" style="padding-bottom: 5px;">
             <h2 class="ion-text-wrap" style="padding-top: 20px;">
-              {{ x.name }} | {{x.sex}} | {{x.age}}
+              {{ x['LAST NAME'] }}, {{ x['FIRST NAME'] }} | {{ x['SEX'] }} | {{x['AGE']}}
             </h2>
 
           </ion-item>
@@ -16,7 +16,7 @@
             <p>
 
               <span>
-                SBP : {{x.systolicBloodPressure}} / DBP : {{x.diastolicBloodPressure}} {{x['diastolicBloodPressure']}}
+                {{x['ADDRESS (CITY)']}}
               </span><br />
 
             </p>

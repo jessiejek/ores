@@ -49,9 +49,9 @@ export class MenuOverviewPage implements OnInit {
   }
   ngOnInit() {
 
-    this.crudService.getData('patientData').subscribe(
+    this.crudService.getData('testAdd4').subscribe(
       res => {
-        //console.log(res);
+        console.log(res);
         this.patientData = res;
       }
     );
@@ -186,12 +186,14 @@ this.dataprofile22=[];
           this.v30=0;this.v31=0;this.v32=0;this.v33=0;this.v34=0;
           this.v40=0;this.v41=0;this.v42=0;this.v43=0;this.v44=0;
           this.dataprofile22.forEach(element => {
-            console.log(element);
+
 
             let CHOLES = (element['CHOL(mg/dL) Normal Value < 200 mg/dL']/38.67);
             let SBP = element['SBP'];
 
-            console.log(CHOLES +' : '+SBP);
+
+
+
 
 
             if( SBP >= 180 && CHOLES >= 4 && CHOLES < 5 ){

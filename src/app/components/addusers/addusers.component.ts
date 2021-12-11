@@ -71,6 +71,7 @@ export class AddusersComponent implements OnInit {
   onSubmit(){
    this.crudService.addMembersAUTH(this.userForm.value);
    this.userForm.reset;
+   this.closeModal();
   }
 
 }
