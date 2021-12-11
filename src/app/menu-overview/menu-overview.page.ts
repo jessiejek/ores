@@ -48,11 +48,16 @@ export class MenuOverviewPage implements OnInit {
     }, 1000);
   }
   ngOnInit() {
-
+    this.patientData=[];
     this.crudService.getData('testAdd4').subscribe(
       res => {
-        console.log(res);
-        this.patientData = res;
+        //console.log(res);
+       // this.patientData = res;
+        res.forEach(element => {
+          if( element['LAST NAME'] != undefined){
+            this.patientData.push(element);
+          }
+        });
       }
     );
     this.maritalStatusCount = [];
@@ -65,27 +70,13 @@ export class MenuOverviewPage implements OnInit {
           var value = res[key];
           this.maritalStatusCount.push({ name: value.statusTitle, y: value.statusCount });
         });
-
-
-
-
-
-
-
-
         this.populatePieChart();
         this.dataChange('a');
-
-
-
-
-
-
         this.dataprofile2=[];
-        this.crudService.getDocsByParam('addData4','MARITAL STATUS','==','MARRIED').subscribe(
+       /* this.crudService.getDocsByParam('addData4','MARITAL STATUS','==','MARRIED').subscribe(
           (res)=>{
             if (res.docs.length === 0) {
-              // //console.log('Document not found! Try again!');
+              // ////console.log('Document not found! Try again!');
 
               //this.message = 'Document not found! Try again!';
               //this.single = null;
@@ -93,7 +84,7 @@ export class MenuOverviewPage implements OnInit {
               res.docs.forEach(doc => {
                 //this.message = '';
                 //this.single = doc.data();
-                ////console.log(doc.data());
+                //////console.log(doc.data());
                 this.dataprofile2.push(doc.data());
               })
             }
@@ -101,25 +92,19 @@ export class MenuOverviewPage implements OnInit {
           },(error) => {
 
           },() =>{
-           // //console.log('done');
-            ////console.log(this.dataprofile2);
+           // ////console.log('done');
+            //////console.log(this.dataprofile2);
 
             this.dataprofile2.forEach(element => {
               let smoking:any="yes";
               if(element['SMOKING'].indexOf("Never")){
                 smoking = "no";
               }
-              /*//console.log(
-                'Smoker? : '+ element['SMOKING'] +' | '+
-                'Age : '+element['AGE']+' | '+
-                'Chole : '+ (element['CHOL(mgdL) Normal Value < 200 mgdL']/38.67).toFixed(2) + ' | ' +
-                'SBP : ' + element['SBP']
 
-                );*/
 
             });
           }
-        );
+        );*/
 
 
 
@@ -167,6 +152,8 @@ this.dataprofile22=[];
       let dataasdasda:any;
       this.crudService.getHeatMapData('testAdd4',this.gender,this.type,this.age).subscribe(
         res=>{
+          //console.log(res);
+
           if (res.docs.length === 0) {
           } else {
             res.docs.forEach(doc => {
@@ -257,7 +244,7 @@ this.dataprofile22=[];
             }
 
 
-            /*//console.log(
+            /*////console.log(
               'Smoker? : '+ element['SMOKING'] +' | '+
               'Age : '+element['AGE']+' | '+
               'Chole : '+ (element['CHOL(mgdL) Normal Value < 200 mgdL']/38.67).toFixed(2) + ' | ' +
@@ -266,7 +253,7 @@ this.dataprofile22=[];
               );*/
 
           });
-         // console.log(this.dataprofile22);
+         // //console.log(this.dataprofile22);
 
           this.populateHeatMap();
         }
@@ -288,7 +275,7 @@ this.dataprofile22=[];
 
 
   populateColumnChart() {
-    //console.log(this.maritalStatusCount);
+    ////console.log(this.maritalStatusCount);
     this.column = new Chart({
       chart: {
         type: "column",

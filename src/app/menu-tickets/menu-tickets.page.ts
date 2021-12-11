@@ -62,7 +62,11 @@ export class MenuTicketsPage implements OnInit {
     }
     reader.readAsBinaryString(file);
   }
+  overwriteAppend:any;
+  segmentChanged(data){
+    console.log(this.overwriteAppend);
 
+  }
 
   setDownload(data) {
       //console.log(data);
@@ -101,24 +105,33 @@ export class MenuTicketsPage implements OnInit {
       this.JSONObject.object = JSON_Object; //Data in JSON Format
       this.JSONObject.string = JSON.stringify(JSON_Object); //Data in String Format
 
-      console.log('JSON object:', this.JSONObject.object);
+
       this.uploadToFirebase(this.JSONObject.object);
     };
     fileReader.readAsArrayBuffer(this.file);
   }
   uploadToFirebase(data) {
-    console.log(data);
 
-   // let JSONresult  = JSON.parse(data);
+    //this.crudService.addToCollection('testAdd4',data);
+
+    var itemsProcessed = 0;
    data.forEach(el => {
-      console.log(el);
-
-     this.crudService.createNewEmplyoee(el);
-
+     this.crudService.addToCollection('testAdd4',el);
+     //console.log('el');
+     if(itemsProcessed === data.length) {
+      this.JSONObject = {
+        object: {},
+        string: ''
+      };
+    }
     });
+
+
+    //setTimeout(() => { window.location.reload(); }, 2000);
   }
   addUser(){
     this.crudService.SignUp(this.userName,this.password);
   }
+
 
 }

@@ -11,6 +11,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class MenuMembersPage implements OnInit {
   isDesktop:boolean;
+  showBtn:any;
   constructor(
     private crudService:CrudService,
     public screensizeService:ScreenSizeService,
@@ -47,5 +48,15 @@ export class MenuMembersPage implements OnInit {
         cssClass: 'my-custom-class',
       });
       return await modal.present();
+  }
+  showHide(id){
+    console.log(this.showBtn +' | '+id);
+
+    if(this.showBtn == id){
+      this.showBtn="";
+    }else{
+      this.showBtn = id;
+    }
+
   }
 }

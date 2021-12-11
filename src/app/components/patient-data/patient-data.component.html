@@ -1,7 +1,7 @@
 <ng-container >
   <div *ngFor="let x of patientData" >
-    <ion-card  mode="ios" class="pointer">
-      <ion-item lines="none">
+    <ion-card  mode="ios" class="pointer ">
+      <ion-item lines="none" style="margin-bottom: -10px;" >
         <ion-avatar slot="start">
           <text-avatar [text]="x['LAST NAME']" [color]=""></text-avatar>
         </ion-avatar>
@@ -14,16 +14,42 @@
           </ion-item>
           <ion-row class="ion-no-padding" lines="none" style="padding-top: 1px !important;">
             <p>
-
               <span>
                 {{x['ADDRESS (CITY)']}}
               </span><br />
-
-            </p>
-            <br />
+              <span (click)="showHide(x.id)" color="danger">more..</span>
+              </p>
           </ion-row>
         </ion-label>
       </ion-item>
+      <ion-item lines="none" id="{{x.id}}"  *ngIf="showBtn == x.id" style="padding-top: 0px !important;">
+        <p>
+          <span>ALCOHOL INTAKE : <b>{{x['ALCOHOL INTAKE']}}</b></span><br />
+          <span>CHOL(mg/dL) : <b>{{x['HOL(mg/dL) Normal Value < 200 mg/dL']}}</b></span><br />
+          <span>DBP : <b>{{x['DBP']}}</b></span><br />
+          <span>DIETARY INTAKE : <b>{{x['DIETARY INTAKE']}}</b></span><br />
+          <span>DM : <b>{{x['DM']}}</b></span><br />
+          <span>EDUCATION : <b>{{x['EDUCATION']}}</b></span><br />
+          <span>EMPLOYMENT : <b>{{x['EMPLOYMENT']}}</b></span><br />
+          <span>FBS (mg/dL) : <b>{{x['FBS (mg/dL) Normal Value 70-100 mg/dL']}}</b></span><br />
+          <span>HDL (mg/dL) : <b>{{x['HDL (mg/dL) Normal Value 40-60 mg/dL']}}</b></span><br />
+          <span>HPN : <b>{{x['HPN']}}</b></span><br />
+          <span>INCOME : <b>{{x['INCOME']}}</b></span><br />
+          <span>MARITAL STATUS : <b>{{x['MARITAL STATUS']}}</b></span><br />
+          <span>PHYSICAL ACTIVITY : <b>{{x['PHYSICAL ACTIVITY']}}</b></span><br />
+          <span>PRINCIPAL OR DEPENDENT : <b>{{x['PRINCIPAL OR DEPENDENT']}}</b></span><br />
+          <span>RANK : <b>{{x['RANK']}}</b></span><br />
+          <span>SBP : <b>{{x['SBP']}}</b></span><br />
+          <span>SEX : <b>{{x['SEX']}}</b></span><br />
+          <span>SMOKING : <b>{{x['SMOKING']}}</b></span><br />
+          <span>TENURE : <b>{{x['TENURE']}}</b></span><br />
+          <span>UNIT : <b>{{x['UNIT']}}</b></span><br />
+          <span>Urine Ketone Normal value: <b>{{x['Urine Ketone Normal value: Negative']}}</b></span><br />
+          <span>W/H RATIO : <b>{{x['W/H RATIO']}}</b></span><br />
+          <span>WC (cm) : <b>{{x['WC (cm)']}}</b></span><br />
+        </p>
+      </ion-item>
+
     </ion-card>
   </div>
 </ng-container>

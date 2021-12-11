@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, } from '@angular/fire/compat/firestore';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import firebase from 'firebase/compat/app';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
@@ -17,7 +18,8 @@ export class CrudService {
   constructor(
     public fireservices:AngularFirestore,
     public auth: AngularFireAuth,
-    private angularFireAuth: AngularFireAuth) { }
+    private angularFireAuth: AngularFireAuth,
+    private db: AngularFireDatabase) { }
 
 
 
@@ -116,10 +118,6 @@ export class CrudService {
     }).catch(error => {
       console.log('Something is wrong:', error.message);
     });
-
-
-
-
   }
   addMembersUsers(data,id){
     let users={};
@@ -150,9 +148,7 @@ export class CrudService {
       users['nurseStatus'] = nurseStatus;
       users['patientStatus'] = patientStatus;
     });
-    //this.addToCollection('users',users);
     this.fireservices.collection('users').doc(id).set(users);
-    //this.fireservices.collection('users').add(users);
   }
   addMembersPatientData(data,id){
     let patientData={};
@@ -192,10 +188,17 @@ export class CrudService {
 
 
 
+  deleteCollection(collection,Record){
+    if(Record!=""){
+      return this.fireservices.collection(collection).doc(Record).delete();
+    }else{
+      return this.fireservices.collection(collection).doc(Record).delete();
+    }
 
-  createNewEmplyoee(Record){
-    return this.fireservices.collection('testAdd4').add(Record);
   }
+  /*addToCollection(collection,Record){
+    return this.fireservices.collection(collection).add(Record);
+  }*/
 
 
 
@@ -237,4 +240,20 @@ export class CrudService {
   updateEmployee(data:any){
     this.fireservices.collection('Employee').doc(data).update({name:'Jessie Jay'});
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
