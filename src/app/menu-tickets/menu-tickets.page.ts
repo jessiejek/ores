@@ -12,6 +12,8 @@ export class MenuTicketsPage implements OnInit {
   isDesktop: boolean;
   name = 'This is XLSX TO JSON CONVERTER';
   willDownload = false;
+  userName:any;
+  password:any;
   constructor(
     private screensizeService: ScreenSizeService,
     public router: Router,
@@ -44,6 +46,8 @@ export class MenuTicketsPage implements OnInit {
     let jsonData = null;
     const reader = new FileReader();
     const file = ev.target.files[0];
+    console.log(file);
+
     reader.onload = (event) => {
       const data = reader.result;
       workBook = XLSX.read(data, { type: 'binary' });
@@ -53,7 +57,7 @@ export class MenuTicketsPage implements OnInit {
         return initial;
       }, {});
       const dataString = JSON.stringify(jsonData);
-      document.getElementById('output').innerHTML = dataString;
+     // document.getElementById('output').innerHTML = dataString;
       this.setDownload(dataString);
     }
     reader.readAsBinaryString(file);
@@ -70,6 +74,50 @@ export class MenuTicketsPage implements OnInit {
         this.crudService.createNewEmplyoee(el);
 
       });
+  }
+  arrayBuffer: any;
+  file: File;
+  JSONObject = {
+    object: {},
+    string: ''
+  };
+  incomingfile(event) {
+    this.file = event.target.files[0];
+  }
+  upload() {
+    const fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      this.arrayBuffer = fileReader.result;
+      const data = new Uint8Array(this.arrayBuffer);
+      const arr = new Array();
+      for (let i = 0; i !== data.length; ++i) { arr[i] = String.fromCharCode(data[i]); }
+      const bstr = arr.join('');
+      const workbook = XLSX.read(bstr, { type: 'binary' });
+      const first_sheet_name = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[first_sheet_name];
+      const JSON_Object = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+
+      this.JSONObject.object = JSON_Object; //Data in JSON Format
+      this.JSONObject.string = JSON.stringify(JSON_Object); //Data in String Format
+
+      console.log('JSON object:', this.JSONObject.object);
+      this.uploadToFirebase(this.JSONObject.object);
+    };
+    fileReader.readAsArrayBuffer(this.file);
+  }
+  uploadToFirebase(data) {
+    console.log(data);
+
+   // let JSONresult  = JSON.parse(data);
+   data.forEach(el => {
+      console.log(el);
+
+     this.crudService.createNewEmplyoee(el);
+
+    });
+  }
+  addUser(){
+    this.crudService.SignUp(this.userName,this.password);
   }
 
 }

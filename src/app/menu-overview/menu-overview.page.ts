@@ -82,7 +82,7 @@ export class MenuOverviewPage implements OnInit {
 
 
         this.dataprofile2=[];
-        this.crudService.getDocsByParam('data-profile2','MARITAL STATUS','==','MARRIED').subscribe(
+        this.crudService.getDocsByParam('addData4','MARITAL STATUS','==','MARRIED').subscribe(
           (res)=>{
             if (res.docs.length === 0) {
               // //console.log('Document not found! Try again!');

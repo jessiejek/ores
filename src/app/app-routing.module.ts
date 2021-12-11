@@ -13,7 +13,11 @@ const routes: Routes = [
   {
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
-  }/*,
+  },/*  {
+    path: 'menu-adduser',
+    loadChildren: () => import('./menu-adduser/menu-adduser.module').then( m => m.MenuAdduserPageModule)
+  }
+*,
   {
     path: 'menu-overview',
     loadChildren: () => import('./menu-overview/menu-overview.module').then( m => m.MenuOverviewPageModule)

@@ -41,11 +41,50 @@
 
   <input type="file" (change)="onFileChange($event)" />
 
+
+
+
+  <div class="container">
+    <h3>Upload File (.xls or .xlsx)</h3>
+    <br>
+    <input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file"
+      accept=".xls, .xlsx">
+    <br><br>
+    <button type="button" class="btn btn-info" (click)="upload()" >Convert to JSON</button>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <ion-input type="file" (change)="incomingfile($event)"></ion-input>
+    <ion-button (click)="upload()">Upload</ion-button>
+    <br><br>
+    <div class="jumbotron json_container">
+      <h5>Output:</h5><br>
+      {{JSONObject.string}}
+    </div>
+  </div>
+
+
   <div id="output"></div>
   <br>
   <div *ngIf="willDownload">
     <a id="download"> Download JSON File </a>
   </div>
+  </ion-col>
+
+
+  <ion-col>
+    <ion-item>
+      <ion-label>Username</ion-label>
+      <ion-input [(ngModel)]="userName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input  [(ngModel)]="password"></ion-input>
+      <ion-input></ion-input>
+    </ion-item>
+
+
+
+    <ion-button (click)="addUser()">add User</ion-button>
   </ion-col>
   </ion-row>
   </ion-grid>

@@ -27,13 +27,18 @@ export class MenuMembersPage implements OnInit {
     }, 1000);
   }
   ngOnInit() {
-
-    this.crudService.getData('users').subscribe(
+    this.listOfMembers=[];
+    this.crudService.getDataAggregate('patientData').subscribe(
       res=>{
         console.log(res);
-        this.listOfMembers=res;
+        res.forEach(el => {
+
+          console.log(JSON.stringify(el));
+
+        })
       }
       );
+
   }
 
 }

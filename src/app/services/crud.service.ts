@@ -4,6 +4,7 @@ import {AngularFireAuth} from '@angular/fire/compat/auth'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+
 export  interface UserPro{
   username: string;
   uid: string;
@@ -15,7 +16,8 @@ export class CrudService {
   private user : UserPro;
   constructor(
     public fireservices:AngularFirestore,
-    public auth: AngularFireAuth,) { }
+    public auth: AngularFireAuth,
+    private angularFireAuth: AngularFireAuth) { }
 
 
 
@@ -30,6 +32,31 @@ export class CrudService {
       return ref.valueChanges({idField: 'id'});
 
     }
+    getDataAggregate(data){
+
+      const ref = this.fireservices.collection(data);
+      return ref.valueChanges({idField: 'id'});
+
+     /*
+      this.fireservices
+      .collection(data)
+      .get()
+      .subscribe((ss) => {
+        ss.docs.forEach((doc) => {
+          console.log(doc.data());
+
+        });
+      });*/
+
+      /*this.expensesCollection = this.db.collection('/expenses', ref => ref.where('expenseId', '==', this.expenseId));
+      const categoryDoc = await this.fireservices.collection('Category').where('UserId', '==', userId).get()
+      const categoryId = categoryDoc.id
+      const purchaseDoc = await this.fireservices.collection('Purchase').where('CategoryId', '==', categoryId).get()
+      // Do whatever you need with the document*/
+
+    }
+
+
 
     loginFireauth(value){
       return new Promise<any> ( (resolve, reject)=>{
@@ -74,14 +101,38 @@ export class CrudService {
 
   createNewEmplyoee(Record){
 
-    let record = '{"LAST NAME":"name last","FIRST NAME":"name first","MIDDLE NAME":"name middel","EMPLOYEE NUMBER":13969,"PRINCIPAL OR DEPENDENT":"Principal","AGE":34,"SEX":"F","GENDER":"F","MARITAL STATUS":"MARRIED","ADDRESS (CITY)":"PASAY","EDUCATION":"COLLEGE","EMPLOYMENT":"PRIVATE","INCOME":"Above 400, 000 to 800,000","RANK":"Trainer","UNIT":"Back office","TENURE":"<1 year","SBP":125,"DBP":85,"CHOL(mg/dL) Normal Value < 200 mg/dL":200,"HDL (mg/dL) Normal Value 40-60 mg/dL":42,"FBS (mg/dL) Normal Value 70-100 mg/dL":85,"Urine Ketone Normal value: Negative":"Negative","WC (cm)":75,"W/H RATIO":0.7,"HPN":"No","DM":"No","HPN + DM":"CAN WE MAKE AS FORMULA","SMOKING":"Never smoked","ALCOHOL INTAKE":"Occasional Drinker","PHYSICAL ACTIVITY":"No Exercise","DIETARY INTAKE":"High Salt"}';
+   // let record = '{"LAST NAME":"name last","FIRST NAME":"name first","MIDDLE NAME":"name middel","EMPLOYEE NUMBER":13969,"PRINCIPAL OR DEPENDENT":"Principal","AGE":34,"SEX":"F","GENDER":"F","MARITAL STATUS":"MARRIED","ADDRESS (CITY)":"PASAY","EDUCATION":"COLLEGE","EMPLOYMENT":"PRIVATE","INCOME":"Above 400, 000 to 800,000","RANK":"Trainer","UNIT":"Back office","TENURE":"<1 year","SBP":125,"DBP":85,"CHOL(mg/dL) Normal Value < 200 mg/dL":200,"HDL (mg/dL) Normal Value 40-60 mg/dL":42,"FBS (mg/dL) Normal Value 70-100 mg/dL":85,"Urine Ketone Normal value: Negative":"Negative","WC (cm)":75,"W/H RATIO":0.7,"HPN":"No","DM":"No","HPN + DM":"CAN WE MAKE AS FORMULA","SMOKING":"Never smoked","ALCOHOL INTAKE":"Occasional Drinker","PHYSICAL ACTIVITY":"No Exercise","DIETARY INTAKE":"High Salt"}';
 
-    record = JSON.parse(record);
+    //record = JSON.parse(record);
 
 
 //this.fireservices.collection('Employee').get();
-    return this.fireservices.collection('testAdd').add(record);
+    return this.fireservices.collection('testAdd4').add(Record);
   }
+
+
+
+
+
+
+
+  SignUp(email: string, password: string) {
+    this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(res => {
+      console.log('You are Successfully signed up!', res);
+    })
+    .catch(error => {
+      console.log('Something is wrong:', error.message);
+    });
+    }
+
+
+
+
+
+
+
+
+
   getEmployee(){
     const ref = this.fireservices.collection('Employee');
     return ref.valueChanges({idField: 'id'});
