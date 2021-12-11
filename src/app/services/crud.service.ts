@@ -74,8 +74,13 @@ export class CrudService {
 
   createNewEmplyoee(Record){
 
+    let record = '{"LAST NAME":"name last","FIRST NAME":"name first","MIDDLE NAME":"name middel","EMPLOYEE NUMBER":13969,"PRINCIPAL OR DEPENDENT":"Principal","AGE":34,"SEX":"F","GENDER":"F","MARITAL STATUS":"MARRIED","ADDRESS (CITY)":"PASAY","EDUCATION":"COLLEGE","EMPLOYMENT":"PRIVATE","INCOME":"Above 400, 000 to 800,000","RANK":"Trainer","UNIT":"Back office","TENURE":"<1 year","SBP":125,"DBP":85,"CHOL(mg/dL) Normal Value < 200 mg/dL":200,"HDL (mg/dL) Normal Value 40-60 mg/dL":42,"FBS (mg/dL) Normal Value 70-100 mg/dL":85,"Urine Ketone Normal value: Negative":"Negative","WC (cm)":75,"W/H RATIO":0.7,"HPN":"No","DM":"No","HPN + DM":"CAN WE MAKE AS FORMULA","SMOKING":"Never smoked","ALCOHOL INTAKE":"Occasional Drinker","PHYSICAL ACTIVITY":"No Exercise","DIETARY INTAKE":"High Salt"}';
+
+    record = JSON.parse(record);
+
+
 //this.fireservices.collection('Employee').get();
-    return this.fireservices.collection('Employee').add(Record);
+    return this.fireservices.collection('testAdd').add(record);
   }
   getEmployee(){
     const ref = this.fireservices.collection('Employee');
