@@ -374,10 +374,9 @@ this.dataprofile22=[];
   }
 
   heatMap:any;
+
+
   populateHeatMap(){
-
-
-
 /*
     HighCharts.setOptions({
       colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
@@ -414,35 +413,15 @@ this.dataprofile22=[];
         title: null,
         reversed: true
       },
-
-
-
-      colorAxis: {
+     colorAxis: {
         min: 0,
         minColor: '#FFFFFF',
         maxColor: HighCharts.getOptions().colors[0]
       },
-      /*
-          colorAxis: {
-        min: -10,
-        max: 7,
-        endOnTick: false,
-        startOnTick: false,
-        tickInterval: 2,
-        stops: [
-            [0, '#ff0000'], //red
-            [0.588, '#ffffff'], //white
-            [1, '#0000ff'] //blue
-        ]
-    },
-      */
-
-
-
       tooltip: {
         formatter: function () {
           return '<b>' +getPointCategoryName(this.point, 'y')+' SBP <br />' +
-getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
+          getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
         }
       },
 
@@ -450,17 +429,88 @@ getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.val
         name: 'Sales per employee',
         borderWidth: 1,
         type: undefined,
+
+        // 8b0000 - dark red
+        // FF0000 - red
+       // FF8C00 - orange
+        // FFFF00 - yellow
+        // 00FF00 - green
         data: [
-          [0, 0, this.v00], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
+          {
+            x: 0,y: 0,value: this.v00,color: "#FF0000"
+          },{
+            x: 0,y: 1,value: this.v01,color: "#FF8C00"
+          },{
+            x: 0,y: 2,value: this.v02,color: "#FFFF00"
+          },{
+            x: 0,y: 3,value: this.v03,color: "#00FF00"
+          },{
+            x: 0,y: 4,value: this.v04,color: "#00FF00"
+          },
+
+          {
+            x: 1,y: 0,value: this.v10,color: "#8b0000"
+          },{
+            x: 1,y: 1,value: this.v11,color: "#FF0000"
+          },{
+            x: 1,y: 2,value: this.v12,color: "#FF8C00"
+          },{
+            x: 1,y: 3,value: this.v13,color: "#FFFF00"
+          },{
+            x: 1,y: 4,value: this.v14,color: "#00FF00"
+          },
+
+
+          {
+            x: 2,y: 0,value: this.v20,color: "#8b0000"
+          },{
+            x: 2,y: 1,value: this.v21,color: "#8b0000"
+          },{
+            x: 2,y: 2,value: this.v22,color: "#FF0000"
+          },{
+            x: 2,y: 3,value: this.v23,color: "#FF8C00"
+          },{
+            x: 2,y: 4,value: this.v24,color: "#FFFF00"
+          },
+
+          {
+            x: 3,y: 0,value: this.v30,color: "#8b0000"
+          },{
+            x: 3,y: 1,value: this.v31,color: "#8b0000"
+          },{
+            x: 3,y: 2,value: this.v32,color: "#8b0000"
+          },{
+            x: 3,y: 3,value: this.v33,color: "#FF0000"
+          },{
+            x: 3,y: 4,value: this.v34,color: "#FF8C00"
+          },
+
+          {
+            x: 4,y: 0,value: this.v40,color: "#8b0000"
+          },{
+            x: 4,y: 1,value: this.v41,color: "#8b0000"
+          },{
+            x: 4,y: 2,value: this.v42,color: "#8b0000"
+          },{
+            x: 4,y: 3,value: this.v43,color: "#8b0000"
+          },{
+            x: 4,y: 4,value: this.v44,color: "#FF0000"
+          },
+      ],
+
+
+
+        /*data: [
+          [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
           [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
           [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
           [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
           [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
 
-          ],
+          ],*/
         dataLabels: {
           enabled: true,
-          color: '#000000'
+         // color: '#000000'
         }
       }], credits: { enabled: false },
 
