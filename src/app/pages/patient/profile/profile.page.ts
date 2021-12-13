@@ -55,11 +55,15 @@ export class ProfilePage implements OnInit {
       this.isDesktop = isDesktop;
     });
   }
-  selectedSex;
+  selectedSex:string;
   selectedadminStatus:string;
-  selectednurseStatus
-  selectedpatientStatus
+  selectednurseStatus:string;
+  selectedpatientStatus:string;
   ngOnInit() {
+    this.selectedadminStatus="";
+    this.selectednurseStatus="";
+    this.selectedpatientStatus="";
+    this.selectedSex="";
     this.userForm = this.formBuilder.group({
       name: [''],
       firstName: [''],
