@@ -27,6 +27,7 @@ export class MenuOverviewPage implements OnInit {
   gender:any = 'M';
   type:any = 'Current Smoker';
   age:any = '20';
+  dm:any = 'No';
   constructor(
     private screensizeService: ScreenSizeService,
     public router: Router,
@@ -75,57 +76,6 @@ export class MenuOverviewPage implements OnInit {
         this.populatePieChart();
         this.dataChange('a');
         this.dataprofile2=[];
-       /* this.crudService.getDocsByParam('addData4','MARITAL STATUS','==','MARRIED').subscribe(
-          (res)=>{
-            if (res.docs.length === 0) {
-              // ////console.log('Document not found! Try again!');
-
-              //this.message = 'Document not found! Try again!';
-              //this.single = null;
-            } else {
-              res.docs.forEach(doc => {
-                //this.message = '';
-                //this.single = doc.data();
-                //////console.log(doc.data());
-                this.dataprofile2.push(doc.data());
-              })
-            }
-
-          },(error) => {
-
-          },() =>{
-           // ////console.log('done');
-            //////console.log(this.dataprofile2);
-
-            this.dataprofile2.forEach(element => {
-              let smoking:any="yes";
-              if(element['SMOKING'].indexOf("Never")){
-                smoking = "no";
-              }
-
-
-            });
-          }
-        );*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       }
     );
   }
@@ -139,6 +89,8 @@ export class MenuOverviewPage implements OnInit {
 
 
   dataChange(data){
+    console.log(this.dm);
+
     if(this.heatMap != undefined){
       this.heatMap.destroy();
     }
@@ -150,8 +102,10 @@ export class MenuOverviewPage implements OnInit {
       this.v30=0;this.v31=0;this.v32=0;this.v33=0;this.v34=0;
       this.v40=0;this.v41=0;this.v42=0;this.v43=0;this.v44=0;
       let dataasdasda:any;
-      this.crudService.getHeatMapData('testAdd4',this.gender,this.type,this.age).subscribe(
+      this.crudService.getHeatMapData('testAdd4',this.gender,this.type,this.age,this.dm).subscribe(
         res=>{
+          console.log(res);
+
           if (res.docs.length === 0) {
           } else {
             res.docs.forEach(doc => {

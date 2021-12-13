@@ -120,6 +120,15 @@
                           </ion-select>
                         </ion-item>
                       </ion-col>
+                      <ion-col>
+                        <ion-item>
+                          <ion-label>With Diabetes</ion-label>
+                          <ion-select [(ngModel)]="dm" (ionChange)="dataChange($event)">
+                            <ion-select-option value="Yes">Yes</ion-select-option>
+                            <ion-select-option value="No" >No</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+                      </ion-col>
                     </ion-row>
                   </ion-grid>
                   <div id="heatmap" ></div>

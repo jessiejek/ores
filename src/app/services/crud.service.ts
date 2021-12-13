@@ -85,7 +85,9 @@ export class CrudService {
           ref => ref.where(getParam, operator, paramValue)
           ).get();
     }
-    getHeatMapData(collect,gender,type,age){
+    getHeatMapData(collect,gender,type,age,dm){
+
+
       let ageage = age +10;
     return this.fireservices.collection(
       collect,
@@ -93,7 +95,9 @@ export class CrudService {
                 .where('SEX', '==', gender)
                 .where('AGE', '>=', parseFloat(age))
                 .where('AGE', '<=', parseFloat(ageage))
+                .where('DM', '==', dm)
                 .where('SMOKING', '==', type)
+
     ).get();
     }
 
