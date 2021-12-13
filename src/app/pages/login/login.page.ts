@@ -143,7 +143,7 @@ export class LoginPage implements OnInit {
                     this.nav.navigateForward(['menu']);
                   }else if(patientstatus){
                     console.log('to patient');
-                  this.nav.navigateForward(['/patient']);
+                    this.nav.navigateForward(['/patient']);
                   }
                 }
 

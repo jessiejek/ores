@@ -11,7 +11,206 @@
     </ion-toolbar>
   </div>
 </ion-header>
+<ion-content >
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+<ion-grid>
+  <ion-row>
+    <ion-col size-md="3" size-xs="12" ></ion-col>
+    <ion-col size-md="6" size-xs="12">
 
-<ion-content>
+  <ion-card>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()"  >
 
+
+
+      <div class="">
+        <div class="col" style="display: none;">
+          <ion-item>
+            <ion-label position="floating">uid</ion-label>
+            <ion-input type="text" formControlName="uid"></ion-input>
+          </ion-item>
+        </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Name</ion-label>
+              <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+          </div>
+
+
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="text" formControlName="email"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <!--div class="col">
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" formControlName="password"  ></ion-input>
+            </ion-item>
+
+          </div-->
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Address</ion-label>
+              <ion-input type="text" formControlName="address"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label>Admin Status</ion-label>
+              <ion-select placeholder="Select One" formControlName="adminStatus" [(ngModel)]="selectedadminStatus">
+                <ion-select-option value="true">Admin</ion-select-option>
+                <ion-select-option value="false" selected>Not Admin</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label>Nurse Status</ion-label>
+              <ion-select placeholder="Select One" formControlName="nurseStatus" [(ngModel)]="selectednurseStatus">
+                <ion-select-option value="true">Nurse</ion-select-option>
+                <ion-select-option value="false" selected>Not Nurse</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label>Patient Status</ion-label>
+              <ion-select placeholder="Select One" formControlName="patientStatus" [(ngModel)]="selectedpatientStatus">
+                <ion-select-option value="true">Patient</ion-select-option>
+                <ion-select-option value="false" selected>Not Patient</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Age</ion-label>
+              <ion-input type="text" formControlName="age"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Cholesterol</ion-label>
+              <ion-input type="text" formControlName="cholesterol"  ></ion-input>
+            </ion-item>
+
+          </div>
+
+
+
+
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">DiabetesMelitus</ion-label>
+              <ion-input type="text" formControlName="diabetesMelitus"  ></ion-input>
+            </ion-item>
+
+          </div>
+
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Education</ion-label>
+              <ion-input type="text" formControlName="education"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Employment</ion-label>
+              <ion-input type="text" formControlName="employment"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Hypertension</ion-label>
+              <ion-input type="text" formControlName="hypertension"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Income</ion-label>
+              <ion-input type="text" formControlName="income"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Marital Status</ion-label>
+              <ion-input type="text" formControlName="maritalStatus"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label>Sex</ion-label>
+              <ion-select placeholder="Select One" formControlName="sex"  [(ngModel)]="selectedSex">
+                <ion-select-option value="Male">Male</ion-select-option>
+                <ion-select-option value="Female" selected>Female</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Diastolic Blood Pressure</ion-label>
+              <ion-input type="text" formControlName="diastolicBloodPressure"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Systolic Blood Pressure</ion-label>
+              <ion-input type="text" formControlName="systolicBloodPressure"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Waist To Hip Ratio</ion-label>
+              <ion-input type="text" formControlName="waistToHipRatio"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label position="floating">Waistline Circumference</ion-label>
+              <ion-input type="text" formControlName="waistlineCircumference"  ></ion-input>
+            </ion-item>
+
+          </div>
+          <div class="col">
+
+            <ion-button expand="block" type="submit" *ngIf="isDisabled" (click)="modify()">Modify</ion-button>
+            <ion-button expand="block" type="submit" *ngIf="!isDisabled">Save</ion-button>
+          </div>
+
+      </div>
+
+
+
+
+      <hr>
+
+    </form>
+  </ion-card>
+
+  </ion-col>
+  </ion-row>
+  </ion-grid>
 </ion-content>
+

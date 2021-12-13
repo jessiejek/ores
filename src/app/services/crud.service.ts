@@ -176,7 +176,69 @@ export class CrudService {
 
   }
 
-
+  editMembersAUTH(data){
+    let xx = '['+JSON.stringify(data)+']';
+    let yy = JSON.parse(xx);
+    let email;
+    let password;
+    yy.forEach(element => {
+      console.log(element.uid);
+      this.editMembersPatientData(yy,element.uid);
+      this.editMembersUsers(yy,element.uid);
+    });
+  }
+  editMembersPatientData(data,id){
+    let patientData={};
+    data.forEach(element => {
+      patientData['id'] = id;
+      patientData['age'] = element.age;
+      patientData['cholesterol'] = element.cholesterol;
+      patientData['diabetesMelitus'] = element.diabetesMelitus;
+      patientData['diastolicBloodPressure'] = element.diastolicBloodPressure;
+      patientData['education'] = element.education;
+      patientData['employment'] = element.employment;
+      patientData['hypertension'] = element.hypertension;
+      patientData['income'] = element.income;
+      patientData['maritalStatus'] = element.maritalStatus;
+      patientData['name'] = element.name;
+      patientData['sex'] = element.sex;
+      patientData['systolicBloodPressure'] = element.systolicBloodPressure;
+      patientData['waistToHipRatio'] = element.waistToHipRatio;
+      patientData['waistlineCircumference'] = element.waistlineCircumference;
+    });
+    this.editCollection('patientData',id,patientData);
+  }
+  editMembersUsers(data,id){
+    let users={};
+    let adminStatus;
+    let nurseStatus
+    let patientStatus
+    data.forEach(element => {
+      if(element.adminStatus == 'true'){
+        adminStatus=true;
+      }else{
+        adminStatus=false;
+      }
+      if(element.nurseStatus == 'true'){
+        nurseStatus=true;
+      }else{
+        nurseStatus=false;
+      }
+      if(element.patientStatus == 'true'){
+        patientStatus=true;
+      }else{
+        patientStatus=false;
+      }
+      users['id'] = id;
+      users['address'] = element.address;
+      users['adminStatus'] = adminStatus;
+      users['email'] = element.email;
+      users['name'] = element.name;
+      users['nurseStatus'] = nurseStatus;
+      users['patientStatus'] = patientStatus;
+    });
+    this.editCollection('users',id,users);
+  }
 
 
 
@@ -206,18 +268,13 @@ export class CrudService {
     return this.fireservices.collection(collection).add(Record);
   }
 
-
+  editCollection(collection,id,JSON){
+    this.fireservices.collection(collection).doc(id).update(JSON);
+  }
 
   SignUp(email: string, password: string) {
     return this.angularFireAuth.createUserWithEmailAndPassword(email, password);
-    this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(res => {
-      console.log('You are Successfully signed up!', res);
-      console.log(res.user.uid);
-      return res.user.uid;
-    })
-    .catch(error => {
-      console.log('Something is wrong:', error.message);
-    });
+
     }
 
 
