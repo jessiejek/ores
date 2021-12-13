@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
-  },/*  {
+  },{
+    path: 'patient',
+    loadChildren: () => import('./pages/patient/patient/patient.module').then( m => m.PatientPageModule)
+  },/*
+*  {
     path: 'menu-adduser',
     loadChildren: () => import('./menu-adduser/menu-adduser.module').then( m => m.MenuAdduserPageModule)
   }

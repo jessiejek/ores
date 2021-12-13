@@ -107,6 +107,8 @@ export class LoginPage implements OnInit {
              let record = {};
 
              let adminstatus;
+             let nursestatus;
+             let patientstatus;
              this.crudService.getUserInfo('users',resp.user.uid).subscribe(
               res=>{
                 console.log(res);
@@ -114,25 +116,35 @@ export class LoginPage implements OnInit {
                 let x = JSON.stringify(res);
                 let parsedData = JSON.parse('['+x+']');
                 adminstatus = parsedData[0].adminStatus;
+                nursestatus = parsedData[0].nurseStatus;
+                patientstatus = parsedData[0].patientStatus;
                if(parsedData){
                   record['address'] = parsedData[0].address;
                   record['adminStatus'] = parsedData[0].adminStatus;
+                  record['nurseStatus'] = parsedData[0].nurseStatus;
+                  record['patientStatus'] = parsedData[0].patientStatus;
                   record['name'] = parsedData[0].name;
                   record['email'] = resp.user.multiFactor.user.email;
                   record['uid'] = resp.user.multiFactor.user.uid;
                   record['accessToken'] = resp.user.multiFactor.user.accessToken;
-                  console.log(adminstatus);
+                  console.log('adminstatus :' +adminstatus );
+                  console.log('nursestatus :' +nursestatus );
+                  console.log('patientstatus :' +patientstatus );
+                  this.storageService.store(AuthConstants.AUTH, JSON.stringify(record));
+                  if(this.rememberMe){
+                    let valueToSave = JSON.stringify(value);
+                    valueToSave = '['+valueToSave+']';
+                    this.storageService.store(AuthConstants.RememberMe, (valueToSave));
+                  }
 
                   if(adminstatus){
-                   this.storageService.store(AuthConstants.AUTH, JSON.stringify(record));
-                   if(this.rememberMe){
-                     let valueToSave = JSON.stringify(value);
-                     valueToSave = '['+valueToSave+']';
-                     this.storageService.store(AuthConstants.RememberMe, (valueToSave));
-                   }
-                   this.nav.navigateForward(['menu']);
-                 }else{
-                 }
+                    console.log('to admin');
+
+                    this.nav.navigateForward(['menu']);
+                  }else if(patientstatus){
+                    console.log('to patient');
+                  this.nav.navigateForward(['/patient']);
+                  }
                 }
 
               }

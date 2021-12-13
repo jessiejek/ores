@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from '../services/crud.service';
 import { ScreenSizeService } from '../services/screen-size/screen-size.service';
-
+import { VarConstants, } from "../config/variable-constants";
 import * as HighCharts from 'highcharts';
 import More from 'highcharts/highcharts-more';
 More(HighCharts);
@@ -12,7 +12,8 @@ import Heatmap from 'highcharts/modules/heatmap';
 Heatmap(HighCharts);
 import { Chart } from 'angular-highcharts';
 import { jsonEval } from '@firebase/util';
-
+import { AuthConstants, } from "../config/auth-constants";
+import { VariableService } from '../services/variables/variable.service';
 
 @Component({
   selector: 'app-menu-overview',
@@ -29,7 +30,8 @@ export class MenuOverviewPage implements OnInit {
   constructor(
     private screensizeService: ScreenSizeService,
     public router: Router,
-    private crudService: CrudService
+    private crudService: CrudService,
+    public variable:VariableService
   ) {
     this.screensizeService.isDesktopView().subscribe((isDesktop) => {
       if (this.isDesktop && !isDesktop) {
@@ -133,39 +135,30 @@ export class MenuOverviewPage implements OnInit {
   v20=0;v21=0;v22=0;v23=0;v24=0;
   v30=0;v31=0;v32=0;v33=0;v34=0;
   v40=0;v41=0;v42=0;v43=0;v44=0;
-  dataChange(data){
 
+
+
+  dataChange(data){
     if(this.heatMap != undefined){
       this.heatMap.destroy();
     }
-    //this.populateHeatMap();
-
     if(this.gender != undefined && this.type != undefined && this.age != undefined ){
-this.dataprofile22=[];
+      this.dataprofile22=[];
       this.v00=0;this.v01=0;this.v02=0;this.v03=0;this.v04=0;
       this.v10=0;this.v11=0;this.v12=0;this.v13=0;this.v14=0;
       this.v20=0;this.v21=0;this.v22=0;this.v23=0;this.v24=0;
       this.v30=0;this.v31=0;this.v32=0;this.v33=0;this.v34=0;
       this.v40=0;this.v41=0;this.v42=0;this.v43=0;this.v44=0;
-
-      //this.populateHeatMap();
       let dataasdasda:any;
       this.crudService.getHeatMapData('testAdd4',this.gender,this.type,this.age).subscribe(
         res=>{
-          //console.log(res);
-
           if (res.docs.length === 0) {
           } else {
             res.docs.forEach(doc => {
-
-
               this.dataprofile22.push(doc.data());
-
             })
           }
-
         },(error) => {
-
         },() =>{
           this.v00=0;this.v01=0;this.v02=0;this.v03=0;this.v04=0;
           this.v10=0;this.v11=0;this.v12=0;this.v13=0;this.v14=0;
@@ -173,87 +166,71 @@ this.dataprofile22=[];
           this.v30=0;this.v31=0;this.v32=0;this.v33=0;this.v34=0;
           this.v40=0;this.v41=0;this.v42=0;this.v43=0;this.v44=0;
           this.dataprofile22.forEach(element => {
+            //Variables
+          let CHOLES = (element[this.variable.Cholesterol]/38.67);
+          let SBP = element[this.variable.SBP];
 
+          if( SBP >= 180 && CHOLES >= 4 && CHOLES < 5 ){
+            this.v00 += 1;
+          }else if(SBP >= 160 && SBP < 180 && CHOLES >= 4 && CHOLES < 5){
+            this.v01 += 1;
+          }else if(SBP >= 140 && SBP < 160 && CHOLES >= 4 && CHOLES < 5){
+            this.v02 += 1;
+          }else if(SBP >= 120 && SBP < 140 && CHOLES >= 4 && CHOLES < 5){
+            this.v03 += 1;
+          }else if(SBP >= 110 && SBP < 120 && CHOLES >= 4 && CHOLES < 5){
+            this.v04 += 1;
+          }
 
-            let CHOLES = (element['CHOL(mg/dL) Normal Value < 200 mg/dL']/38.67);
-            let SBP = element['SBP'];
+          if( SBP >= 180 && CHOLES >= 5 && CHOLES < 6 ){
+            this.v10 += 1;
+          }else if(SBP >= 160 && SBP < 180 && CHOLES >= 5 && CHOLES < 6){
+            this.v11 += 1;
+          }else if(SBP >= 140 && SBP < 160 && CHOLES >= 5 && CHOLES < 6){
+            this.v12 += 1;
+          }else if(SBP >= 120 && SBP < 140 && CHOLES >= 5 && CHOLES < 6){
+            this.v13 += 1;
+          }else if(SBP >= 110 && SBP < 120 && CHOLES >= 5 && CHOLES < 6){
+            this.v14 += 1;
+          }
 
+          if( SBP >= 180 &&                   CHOLES >= 6 && CHOLES < 7 ){
+            this.v20 += 1;
+          }else if(SBP >= 160 && SBP < 180 && CHOLES >= 6 && CHOLES < 7){
+            this.v21 += 1;
+          }else if(SBP >= 140 && SBP < 160 && CHOLES >= 6 && CHOLES < 7){
+            this.v22 += 1;
+          }else if(SBP >= 120 && SBP < 140 && CHOLES >= 6 && CHOLES < 7){
+            this.v23 += 1;
+          }else if(SBP >= 110 && SBP < 120 && CHOLES >= 6 && CHOLES < 7){
+            this.v24 += 1;
+          }
 
+          if( SBP >= 180 &&                   CHOLES >= 7 && CHOLES < 8 ){
+            this.v30 += 1;
+          }else if(SBP >= 160 && SBP < 180 && CHOLES >= 7 && CHOLES < 8){
+            this.v31 += 1;
+          }else if(SBP >= 140 && SBP < 160 && CHOLES >= 7 && CHOLES < 8){
+            this.v32 += 1;
+          }else if(SBP >= 120 && SBP < 140 && CHOLES >= 7 && CHOLES < 8){
+            this.v33 += 1;
+          }else if(SBP >= 110 && SBP < 120 && CHOLES >= 7 && CHOLES < 8){
+            this.v34 += 1;
+          }
 
-
-
-
-            if( SBP >= 180 && CHOLES >= 4 && CHOLES < 5 ){
-              this.v00 += 1;
-            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 4 && CHOLES < 5){
-              this.v01 += 1;
-            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 4 && CHOLES < 5){
-              this.v02 += 1;
-            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 4 && CHOLES < 5){
-              this.v03 += 1;
-            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 4 && CHOLES < 5){
-              this.v04 += 1;
-            }
-
-            if( SBP >= 180 && CHOLES >= 5 && CHOLES < 6 ){
-              this.v10 += 1;
-            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 5 && CHOLES < 6){
-              this.v11 += 1;
-            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 5 && CHOLES < 6){
-              this.v12 += 1;
-            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 5 && CHOLES < 6){
-              this.v13 += 1;
-            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 5 && CHOLES < 6){
-              this.v14 += 1;
-            }
-
-            if( SBP >= 180 &&                   CHOLES >= 6 && CHOLES < 7 ){
-              this.v20 += 1;
-            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 6 && CHOLES < 7){
-              this.v21 += 1;
-            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 6 && CHOLES < 7){
-              this.v22 += 1;
-            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 6 && CHOLES < 7){
-              this.v23 += 1;
-            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 6 && CHOLES < 7){
-              this.v24 += 1;
-            }
-
-            if( SBP >= 180 &&                   CHOLES >= 7 && CHOLES < 8 ){
-              this.v30 += 1;
-            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 7 && CHOLES < 8){
-              this.v31 += 1;
-            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 7 && CHOLES < 8){
-              this.v32 += 1;
-            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 7 && CHOLES < 8){
-              this.v33 += 1;
-            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 7 && CHOLES < 8){
-              this.v34 += 1;
-            }
-
-            if( SBP >= 180 &&                   CHOLES >= 8 ){
-              this.v40 += 1;
-            }else if(SBP >= 160 && SBP < 180 && CHOLES >= 8 ){
-              this.v41 += 1;
-            }else if(SBP >= 140 && SBP < 160 && CHOLES >= 8 ){
-              this.v42 += 1;
-            }else if(SBP >= 120 && SBP < 140 && CHOLES >= 8){
-              this.v43 += 1;
-            }else if(SBP >= 110 && SBP < 120 && CHOLES >= 8){
-              this.v44 += 1;
-            }
-
-
-            /*////console.log(
-              'Smoker? : '+ element['SMOKING'] +' | '+
-              'Age : '+element['AGE']+' | '+
-              'Chole : '+ (element['CHOL(mgdL) Normal Value < 200 mgdL']/38.67).toFixed(2) + ' | ' +
-              'SBP : ' + element['SBP']
-
-              );*/
-
+          if( SBP >= 180 &&                   CHOLES >= 8 ){
+            this.v40 += 1;
+          }else if(SBP >= 160 && SBP < 180 && CHOLES >= 8 ){
+            this.v41 += 1;
+          }else if(SBP >= 140 && SBP < 160 && CHOLES >= 8 ){
+            this.v42 += 1;
+          }else if(SBP >= 120 && SBP < 140 && CHOLES >= 8){
+            this.v43 += 1;
+          }else if(SBP >= 110 && SBP < 120 && CHOLES >= 8){
+            this.v44 += 1;
+          }
           });
-         // //console.log(this.dataprofile22);
+
 
           this.populateHeatMap();
         }

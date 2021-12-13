@@ -9,32 +9,32 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class IndexGuard implements CanActivate {
   constructor(
     public storageService: StorageService,
     public router: Router,) {}
     canActivate(): Promise<boolean> {
       return new Promise((resolve) => {
+        //console.log('at home guard');
+
         let userIdentifier;
         this.storageService.get(AuthConstants.AUTH).then(
             (res) => {
-              console.log(res);
+              //console.log(res);
               if(res.adminStatus){
-                resolve(true);
+                resolve(false);
+                this.router.navigate(["/menu"]);
               }else if(res.patientStatus){
                 resolve(false)
                 this.router.navigate(["/patient"]);
               }else{
-                resolve(false)
-                this.router.navigate(["/login"]);
+                resolve(true)
               }
 
           })
           .catch((err) => {
-            resolve(false);
-            this.router.navigate(["/login"]);
+            resolve(true);
           });
       });
     }
-
 }

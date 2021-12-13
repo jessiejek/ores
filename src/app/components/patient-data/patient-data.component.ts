@@ -1,4 +1,6 @@
 import { Component, OnInit ,Input} from '@angular/core';
+import { VariableService } from 'src/app/services/variables/variable.service';
+import { AuthConstants, } from "../../config/auth-constants";
 
 @Component({
   selector: 'app-patient-data',
@@ -8,7 +10,7 @@ import { Component, OnInit ,Input} from '@angular/core';
 export class PatientDataComponent implements OnInit {
   @Input() patientData: any;
   showBtn:any ;
-  constructor() { }
+  constructor(public variable:VariableService) { }
 
   ngOnInit() {}
   showHide(id){
@@ -21,4 +23,7 @@ export class PatientDataComponent implements OnInit {
     }
 
   }
+
+
 }
+

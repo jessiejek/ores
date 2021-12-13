@@ -25,7 +25,7 @@
       <ion-item lines="none" id="{{x.id}}"  *ngIf="showBtn == x.id" style="padding-top: 0px !important;">
         <p>
           <span>ALCOHOL INTAKE : <b>{{x['ALCOHOL INTAKE']}}</b></span><br />
-          <span>CHOL(mg/dL) : <b>{{x['HOL(mg/dL) Normal Value < 200 mg/dL']}}</b></span><br />
+          <span>CHOL(mg/dL) : <b>{{x[this.variable.Cholesterol]}}</b></span><br />
           <span>DBP : <b>{{x['DBP']}}</b></span><br />
           <span>DIETARY INTAKE : <b>{{x['DIETARY INTAKE']}}</b></span><br />
           <span>DM : <b>{{x['DM']}}</b></span><br />
