@@ -69,8 +69,26 @@ export class CrudService {
       })
      }
 
+     forgotPassword(email){
+
+      return new Promise<any> ( (resolve, reject)=>{
+        firebase.auth().sendPasswordResetEmail(email).then(
+          res => resolve(res),
+          error => reject(error)
+        )
+      })
+     }
+     resetPassword(code, password){
 
 
+
+      return new Promise<any> ( (resolve, reject)=>{
+        firebase.auth().confirmPasswordReset(code, password).then(
+          res => resolve(res),
+          error => reject(error)
+        )
+      })
+     }
 
 
 

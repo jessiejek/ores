@@ -2,16 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScreenSizeService } from 'src/app/services/screen-size/screen-size.service';
 import { FormBuilder,Validators  } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { CrudService } from 'src/app/services/crud.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { AuthConstants } from "../../../config/auth-constants";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  frmPasswordReset;
+  userForm;
+  /*
   userForm = this.formBuilder.group({
     firstName: [''],
     lastName: [''],
@@ -35,7 +39,7 @@ export class ProfilePage implements OnInit {
     waistToHipRatio: [''],
     waistlineCircumference: [''],
     uid: [''],
-  });
+  });*/
   isDesktop: boolean;
 
   isDisabled:boolean = true;
@@ -46,7 +50,10 @@ export class ProfilePage implements OnInit {
     private formBuilder: FormBuilder,
     private modalController:ModalController,
     private crudService:CrudService,
-    public storageService:StorageService
+    public storageService:StorageService,
+    public alertController:AlertController,
+    private afAuth: AngularFireAuth,
+    private fb: FormBuilder
   ) {
     this.screensizeService.isDesktopView().subscribe((isDesktop) => {
       if (this.isDesktop && !isDesktop) {
@@ -59,6 +66,7 @@ export class ProfilePage implements OnInit {
   selectedadminStatus:string;
   selectednurseStatus:string;
   selectedpatientStatus:string;
+  email;
   ngOnInit() {
     this.selectedadminStatus="";
     this.selectednurseStatus="";
@@ -89,12 +97,26 @@ export class ProfilePage implements OnInit {
       waistlineCircumference: [''],
       uid: [''],
     });
+    this.frmPasswordReset = this.fb.group({
+      email: [null, [Validators.required, Validators.email]]
+    });
+
+
+
+    this.initializeGetUserInfo();
+
+
+
     if(this.isDisabled){
       this.userForm.disable();
     }else{
       this.userForm.enable();
     }
 
+
+
+  }
+  initializeGetUserInfo(){
     this.storageService.get(AuthConstants.AUTH).then(
       (res) => {
         console.log('first');
@@ -140,7 +162,7 @@ export class ProfilePage implements OnInit {
           this.selectedpatientStatus = users[0].patientStatus.toString();
           this.userForm.controls['email'].setValue(users[0].email);
           this.userForm.controls['address'].setValue(users[0].address);
-
+          this.email = users[0].email;
         });
 
 
@@ -151,7 +173,6 @@ export class ProfilePage implements OnInit {
 
 
     });
-
   }
   onSubmit(){
     this.crudService.editMembersAUTH(this.userForm.value);
@@ -172,5 +193,64 @@ export class ProfilePage implements OnInit {
       this.ngOnInit();
       event.target.complete();
     }, 1000);
+  }
+  async forgotpassword(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Forgot Password',
+      subHeader: this.email,
+      message: 'Reset Password?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.frmPasswordReset.controls['email'].setValue(this.email);
+            this.crudService.forgotPassword(this.email).then((resp)=>{
+              this.modalUpdateV3('Success','Please Check Your Email.',true);
+
+            },
+            err => {
+             console.log(err);
+             this.modalUpdateV3('Error',err,true);
+            });
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
+  async modalUpdateV3(header, message, data) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: header,
+      message: message,
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+            if(data){
+
+            }else{
+
+            }
+
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 }

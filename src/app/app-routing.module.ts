@@ -17,7 +17,11 @@ const routes: Routes = [
   },{
     path: 'patient',
     loadChildren: () => import('./pages/patient/patient/patient.module').then( m => m.PatientPageModule)
+  },{
+    path: 'auth/email/action',
+    loadChildren: () => import('./pages/forgot/password/password.module').then( m => m.PasswordPageModule)
   },/*
+
 *  {
     path: 'menu-adduser',
     loadChildren: () => import('./menu-adduser/menu-adduser.module').then( m => m.MenuAdduserPageModule)
