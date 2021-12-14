@@ -64,11 +64,10 @@ export class MenuOverviewPage implements OnInit {
       }
     );
     this.maritalStatusCount = [];
-    let resP;
     this.crudService.getData('maritalStatusCount').subscribe(
       res => {
 
-        this.maritalStatusCount1 = res;
+        this.maritalStatusCount=[];
         Object.keys(res).forEach((key) => {
           var value = res[key];
           this.maritalStatusCount.push({ name: value.statusTitle, y: value.statusCount });
@@ -381,7 +380,7 @@ export class MenuOverviewPage implements OnInit {
 
 
   populatePieChart() {
-    let piechart = HighCharts.chart('asdasdasd', {
+    let piechart = HighCharts.chart('pieChart', {
       chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
@@ -570,33 +569,33 @@ populateHeatMap70MaleNonSmokerDB(){
           colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
          });
     */
-    
+
         function getPointCategoryName(point, dimension) {
           var series = point.series,
             isY = dimension === 'y',
             axis = series[isY ? 'yAxis' : 'xAxis'];
           return axis.categories[point[isY ? 'y' : 'x']];
         }
-    
+
         this.heatMap = HighCharts.chart('heatmap', {
-    
+
           chart: {
             type: 'heatmap',
             marginTop: 40,
             marginBottom: 80,
             plotBorderWidth: 1
           },
-    
-    
+
+
           title: {
             text: 'WPR B People w/ Diab'
           },
-          
-    
+
+
           xAxis: {
             categories: ['4', '5', '6', '7', '8']
           },
-    
+
           yAxis: {
             categories: ['180', '160', '140', '120', '110'],
             title: null,
@@ -613,18 +612,18 @@ populateHeatMap70MaleNonSmokerDB(){
               getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
             }
           },
-    
+
           series: [{
             name: 'Sales per employee',
             borderWidth: 1,
             type: undefined,
-    
+
             // 8b0000 - dark red
             // FF0000 - red
            // FF8C00/FF9900 - orange
             // FFFF00 - yellow
             // 00FF00 - green
-    
+
             data: [
               {
                 x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -637,7 +636,7 @@ populateHeatMap70MaleNonSmokerDB(){
               },{
                 x: 0,y: 4,value: this.v04,color: "#FFFF00"
               },
-    
+
               {
                 x: 1,y: 0,value: this.v10,color: "#8b0000"
               },{
@@ -649,8 +648,8 @@ populateHeatMap70MaleNonSmokerDB(){
               },{
                 x: 1,y: 4,value: this.v14,color: "#FFFF00"
               },
-    
-    
+
+
               {
                 x: 2,y: 0,value: this.v20,color: "#8b0000"
               },{
@@ -662,7 +661,7 @@ populateHeatMap70MaleNonSmokerDB(){
               },{
                 x: 2,y: 4,value: this.v24,color: "#FFFF00"
               },
-    
+
               {
                 x: 3,y: 0,value: this.v30,color: "#8b0000"
               },{
@@ -674,7 +673,7 @@ populateHeatMap70MaleNonSmokerDB(){
               },{
                 x: 3,y: 4,value: this.v34,color: "#FFFF00"
               },
-    
+
               {
                 x: 4,y: 0,value: this.v40,color: "#8b0000"
               },{
@@ -687,61 +686,61 @@ populateHeatMap70MaleNonSmokerDB(){
                 x: 4,y: 4,value: this.v44,color: "#FF9900"
               },
           ],
-    
-    
-    
+
+
+
             /*data: [
               [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
               [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
               [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
               [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
               [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-    
+
               ],*/
             dataLabels: {
               enabled: true,
              // color: '#000000'
             }
           }], credits: { enabled: false },
-    
-    
-    
+
+
+
         });
         setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap60MaleNonSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-        
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -758,18 +757,18 @@ populateHeatMap60MaleNonSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
             // 8b0000 - dark red
             // FF0000 - red
            // FF8C00/FF9900 - orange
             // FFFF00 - yellow
             // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -782,7 +781,7 @@ populateHeatMap60MaleNonSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -794,8 +793,8 @@ populateHeatMap60MaleNonSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00"
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -808,7 +807,7 @@ populateHeatMap60MaleNonSmokerDB(){
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
                   //done
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -820,7 +819,7 @@ populateHeatMap60MaleNonSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -833,61 +832,61 @@ populateHeatMap60MaleNonSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#FFFF00"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap50MaleNonSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-        
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -904,18 +903,18 @@ populateHeatMap50MaleNonSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
             // 8b0000 - dark red
             // FF0000 - red
            // FF8C00/FF9900 - orange
             // FFFF00 - yellow
             // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#FF0000"
@@ -928,7 +927,7 @@ populateHeatMap50MaleNonSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -940,8 +939,8 @@ populateHeatMap50MaleNonSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00"
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -954,7 +953,7 @@ populateHeatMap50MaleNonSmokerDB(){
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
                   //done
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -966,7 +965,7 @@ populateHeatMap50MaleNonSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -979,61 +978,61 @@ populateHeatMap50MaleNonSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#FFFF00"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap40MaleNonSmokerDB(){
             /*
                 HighCharts.setOptions({
                   colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
                  });
             */
-            
+
                 function getPointCategoryName(point, dimension) {
                   var series = point.series,
                     isY = dimension === 'y',
                     axis = series[isY ? 'yAxis' : 'xAxis'];
                   return axis.categories[point[isY ? 'y' : 'x']];
                 }
-            
+
                 this.heatMap = HighCharts.chart('heatmap', {
-            
+
                   chart: {
                     type: 'heatmap',
                     marginTop: 40,
                     marginBottom: 80,
                     plotBorderWidth: 1
                   },
-            
-            
+
+
                   title: {
                     text: 'WPR B People w/ Diab'
                   },
-            
+
                   xAxis: {
                     categories: ['4', '5', '6', '7', '8']
                   },
-            
+
                   yAxis: {
                     categories: ['180', '160', '140', '120', '110'],
                     title: null,
@@ -1050,18 +1049,18 @@ populateHeatMap40MaleNonSmokerDB(){
                       getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                     }
                   },
-            
+
                   series: [{
                     name: 'Sales per employee',
                     borderWidth: 1,
                     type: undefined,
-            
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-            
+
                     data: [
                       {
                         x: 0,y: 0,value: this.v00,color: "#FF9900"
@@ -1074,7 +1073,7 @@ populateHeatMap40MaleNonSmokerDB(){
                       },{
                         x: 0,y: 4,value: this.v04,color: "#00FF00"
                       },
-            
+
                       {
                         x: 1,y: 0,value: this.v10,color: "#FF0000"
                       },{
@@ -1086,8 +1085,8 @@ populateHeatMap40MaleNonSmokerDB(){
                       },{
                         x: 1,y: 4,value: this.v14,color: "#00FF00"
                       },
-            
-            
+
+
                       {
                         x: 2,y: 0,value: this.v20,color: "#8b0000"
                       },{
@@ -1100,7 +1099,7 @@ populateHeatMap40MaleNonSmokerDB(){
                         x: 2,y: 4,value: this.v24,color: "#00FF00"
                       },
                       //done
-            
+
                       {
                         x: 3,y: 0,value: this.v30,color: "#8b0000"
                       },{
@@ -1112,7 +1111,7 @@ populateHeatMap40MaleNonSmokerDB(){
                       },{
                         x: 3,y: 4,value: this.v34,color: "#00FF00"
                       },
-            
+
                       {
                         x: 4,y: 0,value: this.v40,color: "#8b0000"
                       },{
@@ -1125,31 +1124,31 @@ populateHeatMap40MaleNonSmokerDB(){
                         x: 4,y: 4,value: this.v44,color: "#FFFF00"
                       },
                   ],
-            
-            
-            
+
+
+
                     /*data: [
                       [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                       [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                       [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                       [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                       [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-            
+
                       ],*/
                     dataLabels: {
                       enabled: true,
                      // color: '#000000'
                     }
                   }], credits: { enabled: false },
-            
-            
-            
+
+
+
                 });
                 setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-        
-    
-    
+
+
+
 //Male Smoker W/ Diabetes Mellitus
 populateHeatMap70MaleSmokerDB(){
       /*
@@ -1157,33 +1156,33 @@ populateHeatMap70MaleSmokerDB(){
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/ Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -1200,18 +1199,18 @@ populateHeatMap70MaleSmokerDB(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -1224,7 +1223,7 @@ populateHeatMap70MaleSmokerDB(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#FFFF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#8b0000"
                 },{
@@ -1236,8 +1235,8 @@ populateHeatMap70MaleSmokerDB(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#FF9900"
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#8b0000"
                 },{
@@ -1249,7 +1248,7 @@ populateHeatMap70MaleSmokerDB(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#FF9900"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -1261,7 +1260,7 @@ populateHeatMap70MaleSmokerDB(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#FF0000"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -1274,62 +1273,62 @@ populateHeatMap70MaleSmokerDB(){
                   x: 4,y: 4,value: this.v44,color: "#8b0000"
                 },
             ],
-      
-      
-      
+
+
+
               /*data: [
                 [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                 [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                 [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                 [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                 [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-      
+
                 ],*/
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap60MaleSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -1346,18 +1345,18 @@ populateHeatMap60MaleSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -1370,7 +1369,7 @@ populateHeatMap60MaleSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -1382,8 +1381,8 @@ populateHeatMap60MaleSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#FFFF00"
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -1395,7 +1394,7 @@ populateHeatMap60MaleSmokerDB(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#FFFF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -1407,7 +1406,7 @@ populateHeatMap60MaleSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#FF9900"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -1420,62 +1419,62 @@ populateHeatMap60MaleSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#FF0000"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap50MaleSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -1492,18 +1491,18 @@ populateHeatMap50MaleSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -1516,7 +1515,7 @@ populateHeatMap50MaleSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -1528,8 +1527,8 @@ populateHeatMap50MaleSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00"
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -1541,7 +1540,7 @@ populateHeatMap50MaleSmokerDB(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -1553,7 +1552,7 @@ populateHeatMap50MaleSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -1566,62 +1565,62 @@ populateHeatMap50MaleSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#FFFF00"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap40MaleSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -1638,18 +1637,18 @@ populateHeatMap40MaleSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -1662,7 +1661,7 @@ populateHeatMap40MaleSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -1674,8 +1673,8 @@ populateHeatMap40MaleSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00"
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -1687,7 +1686,7 @@ populateHeatMap40MaleSmokerDB(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -1699,7 +1698,7 @@ populateHeatMap40MaleSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -1712,30 +1711,30 @@ populateHeatMap40MaleSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#FFFF00"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
-    
+
+
 //Female Non-Smoker W/ Diabetes Mellitus
 populateHeatMap70FemaleNonSmokerDB(){
       /*
@@ -1743,33 +1742,33 @@ populateHeatMap70FemaleNonSmokerDB(){
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/ Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -1786,18 +1785,18 @@ populateHeatMap70FemaleNonSmokerDB(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -1810,7 +1809,7 @@ populateHeatMap70FemaleNonSmokerDB(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#8b0000"
                 },{
@@ -1822,8 +1821,8 @@ populateHeatMap70FemaleNonSmokerDB(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00"
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#8b0000"
                 },{
@@ -1835,7 +1834,7 @@ populateHeatMap70FemaleNonSmokerDB(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -1847,7 +1846,7 @@ populateHeatMap70FemaleNonSmokerDB(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#FFFF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -1860,62 +1859,62 @@ populateHeatMap70FemaleNonSmokerDB(){
                   x: 4,y: 4,value: this.v44,color: "#FFFF00"
                 },
             ],
-      
-      
-      
+
+
+
               /*data: [
                 [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                 [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                 [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                 [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                 [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-      
+
                 ],*/
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap60FemaleNonSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -1932,18 +1931,18 @@ populateHeatMap60FemaleNonSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -1956,7 +1955,7 @@ populateHeatMap60FemaleNonSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -1968,8 +1967,8 @@ populateHeatMap60FemaleNonSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00"
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -1981,7 +1980,7 @@ populateHeatMap60FemaleNonSmokerDB(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -1993,7 +1992,7 @@ populateHeatMap60FemaleNonSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#FFFF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -2006,62 +2005,62 @@ populateHeatMap60FemaleNonSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#FFFF00"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap50FemaleNonSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -2078,18 +2077,18 @@ populateHeatMap50FemaleNonSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#FF0000"
@@ -2102,7 +2101,7 @@ populateHeatMap50FemaleNonSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -2114,8 +2113,8 @@ populateHeatMap50FemaleNonSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00"
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -2127,7 +2126,7 @@ populateHeatMap50FemaleNonSmokerDB(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -2139,7 +2138,7 @@ populateHeatMap50FemaleNonSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -2152,62 +2151,62 @@ populateHeatMap50FemaleNonSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#00FF00"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap40FemaleNonSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -2224,18 +2223,18 @@ populateHeatMap40FemaleNonSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#FF9900"
@@ -2248,7 +2247,7 @@ populateHeatMap40FemaleNonSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -2260,8 +2259,8 @@ populateHeatMap40FemaleNonSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00"
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -2273,7 +2272,7 @@ populateHeatMap40FemaleNonSmokerDB(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -2285,7 +2284,7 @@ populateHeatMap40FemaleNonSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -2298,29 +2297,29 @@ populateHeatMap40FemaleNonSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#00FF00"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
-  } 
-    
+  }
+
 //Female Smoker W/ Diabetes Mellitus
 populateHeatMap70FemaleSmokerDB(){
       /*
@@ -2328,33 +2327,33 @@ populateHeatMap70FemaleSmokerDB(){
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/ Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -2371,18 +2370,18 @@ populateHeatMap70FemaleSmokerDB(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -2395,7 +2394,7 @@ populateHeatMap70FemaleSmokerDB(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#FFFF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#8b0000"
                 },{
@@ -2407,8 +2406,8 @@ populateHeatMap70FemaleSmokerDB(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#FFFF00"
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#8b0000"
                 },{
@@ -2420,7 +2419,7 @@ populateHeatMap70FemaleSmokerDB(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#FF9900"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -2432,7 +2431,7 @@ populateHeatMap70FemaleSmokerDB(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#FF9900"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -2445,62 +2444,62 @@ populateHeatMap70FemaleSmokerDB(){
                   x: 4,y: 4,value: this.v44,color: "#FF9900"
                 },
             ],
-      
-      
-      
+
+
+
               /*data: [
                 [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                 [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                 [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                 [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                 [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-      
+
                 ],*/
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap60FemaleSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -2517,18 +2516,18 @@ populateHeatMap60FemaleSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -2541,7 +2540,7 @@ populateHeatMap60FemaleSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -2553,8 +2552,8 @@ populateHeatMap60FemaleSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00 "
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -2566,7 +2565,7 @@ populateHeatMap60FemaleSmokerDB(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#FFFF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -2578,7 +2577,7 @@ populateHeatMap60FemaleSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#FFFF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -2591,62 +2590,62 @@ populateHeatMap60FemaleSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#FF9900"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap50FemaleSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -2663,18 +2662,18 @@ populateHeatMap50FemaleSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -2687,7 +2686,7 @@ populateHeatMap50FemaleSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -2699,8 +2698,8 @@ populateHeatMap50FemaleSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00 "
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -2712,7 +2711,7 @@ populateHeatMap50FemaleSmokerDB(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -2724,7 +2723,7 @@ populateHeatMap50FemaleSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -2737,62 +2736,62 @@ populateHeatMap50FemaleSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#FFFF00"
                   },
               ],
-        
-        
-        
+
+
+
                 /*data: [
                   [0, 0, this.v00,], [0, 1, this.v01], [0, 2, this.v02], [0, 3, this.v03],[0, 4, this.v04],
                   [1, 0, this.v10], [1, 1, this.v11], [1, 2, this.v12], [1, 3, this.v13],[1, 4, this.v14],
                   [2, 0, this.v20], [2, 1, this.v21], [2, 2, this.v22], [2, 3, this.v23],[2, 4, this.v24],
                   [3, 0, this.v30], [3, 1, this.v31], [3, 2, this.v32], [3, 3, this.v33],[3, 4, this.v34],
                   [4, 0, this.v40], [4, 1, this.v41], [4, 2, this.v42], [4, 3, this.v43],[4, 4, this.v44],
-        
+
                   ],*/
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap40FemaleSmokerDB(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/ Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -2809,18 +2808,18 @@ populateHeatMap40FemaleSmokerDB(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -2833,7 +2832,7 @@ populateHeatMap40FemaleSmokerDB(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -2845,8 +2844,8 @@ populateHeatMap40FemaleSmokerDB(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00 "
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -2858,7 +2857,7 @@ populateHeatMap40FemaleSmokerDB(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -2870,7 +2869,7 @@ populateHeatMap40FemaleSmokerDB(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -2883,19 +2882,19 @@ populateHeatMap40FemaleSmokerDB(){
                     x: 4,y: 4,value: this.v44,color: "#00FF00"
                   },
               ],
-        
+
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 //Male Non-Smoker W/o Diabetes Mellitus
 populateHeatMap70MaleNonSmoker(){
       /*
@@ -2903,33 +2902,33 @@ populateHeatMap70MaleNonSmoker(){
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -2946,18 +2945,18 @@ populateHeatMap70MaleNonSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#FF0000"
@@ -2970,7 +2969,7 @@ populateHeatMap70MaleNonSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#8b0000"
                 },{
@@ -2982,8 +2981,8 @@ populateHeatMap70MaleNonSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#8b0000"
                 },{
@@ -2995,7 +2994,7 @@ populateHeatMap70MaleNonSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -3007,7 +3006,7 @@ populateHeatMap70MaleNonSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#FFFF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -3020,52 +3019,52 @@ populateHeatMap70MaleNonSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#FFFF00"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap60MaleNonSmoker(){
       /*
           HighCharts.setOptions({
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -3082,18 +3081,18 @@ populateHeatMap60MaleNonSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#FF0000"
@@ -3106,7 +3105,7 @@ populateHeatMap60MaleNonSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#8b0000"
                 },{
@@ -3118,8 +3117,8 @@ populateHeatMap60MaleNonSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#8b0000"
                 },{
@@ -3131,7 +3130,7 @@ populateHeatMap60MaleNonSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -3143,7 +3142,7 @@ populateHeatMap60MaleNonSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#00FF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -3156,52 +3155,52 @@ populateHeatMap60MaleNonSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#00FF00"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap50MaleNonSmoker(){
       /*
           HighCharts.setOptions({
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -3218,18 +3217,18 @@ populateHeatMap50MaleNonSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#FF9900"
@@ -3242,7 +3241,7 @@ populateHeatMap50MaleNonSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#FF9900"
                 },{
@@ -3254,8 +3253,8 @@ populateHeatMap50MaleNonSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#FF0000"
                 },{
@@ -3267,7 +3266,7 @@ populateHeatMap50MaleNonSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -3279,7 +3278,7 @@ populateHeatMap50MaleNonSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#00FF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -3292,52 +3291,52 @@ populateHeatMap50MaleNonSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#00FF00"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap40MaleNonSmoker(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/o Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -3354,18 +3353,18 @@ populateHeatMap40MaleNonSmoker(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#FFFF00"
@@ -3378,7 +3377,7 @@ populateHeatMap40MaleNonSmoker(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#FF9900"
                   },{
@@ -3390,8 +3389,8 @@ populateHeatMap40MaleNonSmoker(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00 "
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#FF0000"
                   },{
@@ -3403,7 +3402,7 @@ populateHeatMap40MaleNonSmoker(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -3415,7 +3414,7 @@ populateHeatMap40MaleNonSmoker(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -3428,19 +3427,19 @@ populateHeatMap40MaleNonSmoker(){
                     x: 4,y: 4,value: this.v44,color: "#00FF00"
                   },
               ],
-        
+
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 //Male Smoker W/o Diabetes Mellitus
 populateHeatMap70MaleSmoker(){
       /*
@@ -3448,33 +3447,33 @@ populateHeatMap70MaleSmoker(){
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -3491,18 +3490,18 @@ populateHeatMap70MaleSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -3515,7 +3514,7 @@ populateHeatMap70MaleSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#8b0000"
                 },{
@@ -3527,8 +3526,8 @@ populateHeatMap70MaleSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#FFFF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#8b0000"
                 },{
@@ -3540,7 +3539,7 @@ populateHeatMap70MaleSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#FFFF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -3552,7 +3551,7 @@ populateHeatMap70MaleSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#FFFF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -3565,52 +3564,52 @@ populateHeatMap70MaleSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#FF9900"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap60MaleSmoker(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/o Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -3627,18 +3626,18 @@ populateHeatMap60MaleSmoker(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#8b0000"
@@ -3651,7 +3650,7 @@ populateHeatMap60MaleSmoker(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -3663,8 +3662,8 @@ populateHeatMap60MaleSmoker(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00 "
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -3676,7 +3675,7 @@ populateHeatMap60MaleSmoker(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -3688,7 +3687,7 @@ populateHeatMap60MaleSmoker(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#FFFF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -3701,52 +3700,52 @@ populateHeatMap60MaleSmoker(){
                     x: 4,y: 4,value: this.v44,color: "#00FF00"
                   },
               ],
-        
+
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap50MaleSmoker(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/o Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -3763,18 +3762,18 @@ populateHeatMap50MaleSmoker(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#FF0000"
@@ -3787,7 +3786,7 @@ populateHeatMap50MaleSmoker(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -3799,8 +3798,8 @@ populateHeatMap50MaleSmoker(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00 "
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -3812,7 +3811,7 @@ populateHeatMap50MaleSmoker(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -3824,7 +3823,7 @@ populateHeatMap50MaleSmoker(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -3837,52 +3836,52 @@ populateHeatMap50MaleSmoker(){
                     x: 4,y: 4,value: this.v44,color: "#FFFF00"
                   },
               ],
-        
+
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap40MaleSmoker(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/o Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -3899,18 +3898,18 @@ populateHeatMap40MaleSmoker(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#FF0000"
@@ -3923,7 +3922,7 @@ populateHeatMap40MaleSmoker(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -3935,8 +3934,8 @@ populateHeatMap40MaleSmoker(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00 "
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -3948,7 +3947,7 @@ populateHeatMap40MaleSmoker(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -3960,7 +3959,7 @@ populateHeatMap40MaleSmoker(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -3973,19 +3972,19 @@ populateHeatMap40MaleSmoker(){
                     x: 4,y: 4,value: this.v44,color: "#00FF00"
                   },
               ],
-        
+
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 //Female Non-Smoker W/o Diabetes Mellitus
 populateHeatMap70FemaleNonSmoker(){
       /*
@@ -3993,33 +3992,33 @@ populateHeatMap70FemaleNonSmoker(){
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -4036,18 +4035,18 @@ populateHeatMap70FemaleNonSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#FF9900"
@@ -4060,7 +4059,7 @@ populateHeatMap70FemaleNonSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#FF0000"
                 },{
@@ -4072,8 +4071,8 @@ populateHeatMap70FemaleNonSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#FF0000"
                 },{
@@ -4085,7 +4084,7 @@ populateHeatMap70FemaleNonSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -4097,7 +4096,7 @@ populateHeatMap70FemaleNonSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#00FF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -4110,52 +4109,52 @@ populateHeatMap70FemaleNonSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#00FF00"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap60FemaleNonSmoker(){
       /*
           HighCharts.setOptions({
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -4172,18 +4171,18 @@ populateHeatMap60FemaleNonSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#FF9900"
@@ -4196,7 +4195,7 @@ populateHeatMap60FemaleNonSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#FF9900"
                 },{
@@ -4208,8 +4207,8 @@ populateHeatMap60FemaleNonSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#FF0000"
                 },{
@@ -4221,7 +4220,7 @@ populateHeatMap60FemaleNonSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -4233,7 +4232,7 @@ populateHeatMap60FemaleNonSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#00FF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -4246,52 +4245,52 @@ populateHeatMap60FemaleNonSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#00FF00"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap50FemaleNonSmoker(){
       /*
           HighCharts.setOptions({
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -4308,18 +4307,18 @@ populateHeatMap50FemaleNonSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#FFFF00"
@@ -4332,7 +4331,7 @@ populateHeatMap50FemaleNonSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#FF9900"
                 },{
@@ -4344,8 +4343,8 @@ populateHeatMap50FemaleNonSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#FF0000"
                 },{
@@ -4357,7 +4356,7 @@ populateHeatMap50FemaleNonSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -4369,7 +4368,7 @@ populateHeatMap50FemaleNonSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#00FF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -4382,52 +4381,52 @@ populateHeatMap50FemaleNonSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#00FF00"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap40FemaleNonSmoker(){
       /*
           HighCharts.setOptions({
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -4444,18 +4443,18 @@ populateHeatMap40FemaleNonSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#FFFF00"
@@ -4468,7 +4467,7 @@ populateHeatMap40FemaleNonSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#FF9900"
                 },{
@@ -4480,8 +4479,8 @@ populateHeatMap40FemaleNonSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#FF0000"
                 },{
@@ -4493,7 +4492,7 @@ populateHeatMap40FemaleNonSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -4505,7 +4504,7 @@ populateHeatMap40FemaleNonSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#00FF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -4518,19 +4517,19 @@ populateHeatMap40FemaleNonSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#00FF00"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 //Female Smoker W/o Diabetes Mellitus
 populateHeatMap70FemaleSmoker(){
       /*
@@ -4538,33 +4537,33 @@ populateHeatMap70FemaleSmoker(){
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -4581,18 +4580,18 @@ populateHeatMap70FemaleSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#FF0000"
@@ -4605,7 +4604,7 @@ populateHeatMap70FemaleSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#8b0000"
                 },{
@@ -4617,8 +4616,8 @@ populateHeatMap70FemaleSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#8b0000"
                 },{
@@ -4630,7 +4629,7 @@ populateHeatMap70FemaleSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -4642,7 +4641,7 @@ populateHeatMap70FemaleSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#FFFF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -4655,52 +4654,52 @@ populateHeatMap70FemaleSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#FFFF00"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
-  } 
-    
+  }
+
 populateHeatMap60FemaleSmoker(){
       /*
           HighCharts.setOptions({
             colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
            });
       */
-      
+
           function getPointCategoryName(point, dimension) {
             var series = point.series,
               isY = dimension === 'y',
               axis = series[isY ? 'yAxis' : 'xAxis'];
             return axis.categories[point[isY ? 'y' : 'x']];
           }
-      
+
           this.heatMap = HighCharts.chart('heatmap', {
-      
+
             chart: {
               type: 'heatmap',
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
             },
-      
-      
+
+
             title: {
               text: 'WPR B People w/o Diab'
             },
-            
-      
+
+
             xAxis: {
               categories: ['4', '5', '6', '7', '8']
             },
-      
+
             yAxis: {
               categories: ['180', '160', '140', '120', '110'],
               title: null,
@@ -4717,18 +4716,18 @@ populateHeatMap60FemaleSmoker(){
                 getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
               }
             },
-      
+
             series: [{
               name: 'Sales per employee',
               borderWidth: 1,
               type: undefined,
-      
+
               // 8b0000 - dark red
               // FF0000 - red
              // FF8C00/FF9900 - orange
               // FFFF00 - yellow
               // 00FF00 - green
-      
+
               data: [
                 {
                   x: 0,y: 0,value: this.v00,color: "#FF0000"
@@ -4741,7 +4740,7 @@ populateHeatMap60FemaleSmoker(){
                 },{
                   x: 0,y: 4,value: this.v04,color: "#00FF00"
                 },
-      
+
                 {
                   x: 1,y: 0,value: this.v10,color: "#8b0000"
                 },{
@@ -4753,8 +4752,8 @@ populateHeatMap60FemaleSmoker(){
                 },{
                   x: 1,y: 4,value: this.v14,color: "#00FF00 "
                 },
-      
-      
+
+
                 {
                   x: 2,y: 0,value: this.v20,color: "#8b0000"
                 },{
@@ -4766,7 +4765,7 @@ populateHeatMap60FemaleSmoker(){
                 },{
                   x: 2,y: 4,value: this.v24,color: "#00FF00"
                 },
-      
+
                 {
                   x: 3,y: 0,value: this.v30,color: "#8b0000"
                 },{
@@ -4778,7 +4777,7 @@ populateHeatMap60FemaleSmoker(){
                 },{
                   x: 3,y: 4,value: this.v34,color: "#00FF00"
                 },
-      
+
                 {
                   x: 4,y: 0,value: this.v40,color: "#8b0000"
                 },{
@@ -4791,52 +4790,52 @@ populateHeatMap60FemaleSmoker(){
                   x: 4,y: 4,value: this.v44,color: "#FFFF00"
                 },
             ],
-      
+
               dataLabels: {
                 enabled: true,
                // color: '#000000'
               }
             }], credits: { enabled: false },
-      
-      
-      
+
+
+
           });
           setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap50FemaleSmoker(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/o Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -4853,18 +4852,18 @@ populateHeatMap50FemaleSmoker(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#FF0000"
@@ -4877,7 +4876,7 @@ populateHeatMap50FemaleSmoker(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#8b0000"
                   },{
@@ -4889,8 +4888,8 @@ populateHeatMap50FemaleSmoker(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00 "
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -4902,7 +4901,7 @@ populateHeatMap50FemaleSmoker(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -4914,7 +4913,7 @@ populateHeatMap50FemaleSmoker(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -4927,52 +4926,52 @@ populateHeatMap50FemaleSmoker(){
                     x: 4,y: 4,value: this.v44,color: "#00FF00"
                   },
               ],
-        
+
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
-    
+
 populateHeatMap40FemaleSmoker(){
         /*
             HighCharts.setOptions({
               colors: ['#8B0000', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
              });
         */
-        
+
             function getPointCategoryName(point, dimension) {
               var series = point.series,
                 isY = dimension === 'y',
                 axis = series[isY ? 'yAxis' : 'xAxis'];
               return axis.categories[point[isY ? 'y' : 'x']];
             }
-        
+
             this.heatMap = HighCharts.chart('heatmap', {
-        
+
               chart: {
                 type: 'heatmap',
                 marginTop: 40,
                 marginBottom: 80,
                 plotBorderWidth: 1
               },
-        
-        
+
+
               title: {
                 text: 'WPR B People w/o Diab'
               },
-              
-        
+
+
               xAxis: {
                 categories: ['4', '5', '6', '7', '8']
               },
-        
+
               yAxis: {
                 categories: ['180', '160', '140', '120', '110'],
                 title: null,
@@ -4989,18 +4988,18 @@ populateHeatMap40FemaleSmoker(){
                   getPointCategoryName(this.point, 'x') +' mmo/l'+ '<br />total : '+this.point.value+'</b>';
                 }
               },
-        
+
               series: [{
                 name: 'Sales per employee',
                 borderWidth: 1,
                 type: undefined,
-        
+
                 // 8b0000 - dark red
                 // FF0000 - red
                // FF8C00/FF9900 - orange
                 // FFFF00 - yellow
                 // 00FF00 - green
-        
+
                 data: [
                   {
                     x: 0,y: 0,value: this.v00,color: "#FF9900"
@@ -5013,7 +5012,7 @@ populateHeatMap40FemaleSmoker(){
                   },{
                     x: 0,y: 4,value: this.v04,color: "#00FF00"
                   },
-        
+
                   {
                     x: 1,y: 0,value: this.v10,color: "#FF0000"
                   },{
@@ -5025,8 +5024,8 @@ populateHeatMap40FemaleSmoker(){
                   },{
                     x: 1,y: 4,value: this.v14,color: "#00FF00 "
                   },
-        
-        
+
+
                   {
                     x: 2,y: 0,value: this.v20,color: "#8b0000"
                   },{
@@ -5038,7 +5037,7 @@ populateHeatMap40FemaleSmoker(){
                   },{
                     x: 2,y: 4,value: this.v24,color: "#00FF00"
                   },
-        
+
                   {
                     x: 3,y: 0,value: this.v30,color: "#8b0000"
                   },{
@@ -5050,7 +5049,7 @@ populateHeatMap40FemaleSmoker(){
                   },{
                     x: 3,y: 4,value: this.v34,color: "#00FF00"
                   },
-        
+
                   {
                     x: 4,y: 0,value: this.v40,color: "#8b0000"
                   },{
@@ -5063,15 +5062,15 @@ populateHeatMap40FemaleSmoker(){
                     x: 4,y: 4,value: this.v44,color: "#00FF00"
                   },
               ],
-        
+
                 dataLabels: {
                   enabled: true,
                  // color: '#000000'
                 }
               }], credits: { enabled: false },
-        
-        
-        
+
+
+
             });
             setTimeout(() => { this.heatMap.reflow() }, 1000);
   }
