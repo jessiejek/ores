@@ -67,8 +67,7 @@ export class MenuOverviewPage implements OnInit {
     let resP;
     this.crudService.getData('maritalStatusCount').subscribe(
       res => {
-
-        this.maritalStatusCount1 = res;
+        this.maritalStatusCount=[];
         Object.keys(res).forEach((key) => {
           var value = res[key];
           this.maritalStatusCount.push({ name: value.statusTitle, y: value.statusCount });
