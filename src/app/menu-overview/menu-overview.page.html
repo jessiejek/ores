@@ -7,22 +7,18 @@
   </ion-toolbar>
 </ion-header-->
 
-
 <ion-header mode="md" class="ion-no-border" *ngIf="!isDesktop">
   <div>
     <ion-toolbar color="primary">
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>
-         Overview
-      </ion-title>
-
+      <ion-title> Overview </ion-title>
     </ion-toolbar>
   </div>
 </ion-header>
 
-<ion-content >
+<ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -34,127 +30,145 @@
   </ion-refresher>
   <ion-grid>
     <ion-row>
-      <ion-col size-md="1" size-xs="12" ></ion-col>
+      <ion-col size-md="1" size-xs="12"></ion-col>
       <ion-col size-md="10" size-xs="12">
         <ion-grid>
           <ion-row>
             <ion-col size-md="3">
               <ion-card>
                 <ion-row>
-                  <ion-col size-xs="12" class="ion-text-center" >
-                    <h3 >Users :</h3>
+                  <ion-col size-xs="12" class="ion-text-center">
+                    <h3>Users :</h3>
                   </ion-col>
-                  </ion-row>
+                </ion-row>
               </ion-card>
             </ion-col>
             <ion-col size-md="3">
               <ion-card>
                 <ion-row>
-                  <ion-col size-xs="12" class="ion-text-center" >
-                    <h3 >Low Risk :</h3>
+                  <ion-col size-xs="12" class="ion-text-center">
+                    <h3>Low Risk:</h3>
                   </ion-col>
-                  </ion-row>
+                </ion-row>
               </ion-card>
             </ion-col>
             <ion-col size-md="3">
               <ion-card>
                 <ion-row>
-                  <ion-col size-xs="12" class="ion-text-center" >
-                    <h3 >Mederate Risk :</h3>
+                  <ion-col size-xs="12" class="ion-text-center">
+                    <h3>Moderate Risk:</h3>
                   </ion-col>
-                  </ion-row>
+                </ion-row>
               </ion-card>
             </ion-col>
             <ion-col size-md="3">
               <ion-card>
                 <ion-row>
-                  <ion-col size-xs="12" class="ion-text-center" >
-                    <h3 >High Risk :</h3>
+                  <ion-col size-xs="12" class="ion-text-center">
+                    <h3>High Risk:</h3>
                   </ion-col>
-                  </ion-row>
+                </ion-row>
               </ion-card>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size-md='8' size-xs="12">
-
-              <ion-col size='12'>
-
-                <ion-card   mode="ios"  class="pointer">
-                  <div id="asdasdasd" ></div>
+            <ion-col size-md="8" size-xs="12">
+              <ion-col size="12">
+                <ion-card mode="ios" class="pointer">
+                  <div id="asdasdasd"></div>
                 </ion-card>
               </ion-col>
-              <ion-col size='12'>
-
-                <ion-card   mode="ios"  class="pointer">
+              <ion-col size="12">
+                <ion-card mode="ios" class="pointer">
                   <ion-grid>
                     <ion-row>
                       <ion-col>
                         <ion-item>
                           <ion-label>Gender</ion-label>
-                          <ion-select [(ngModel)]="gender"  (ionChange)="dataChange($event)">
-                            <ion-select-option value="M" selected>Male</ion-select-option>
-                            <ion-select-option value="F">Female</ion-select-option>
+                          <ion-select
+                            [(ngModel)]="gender"
+                            (ionChange)="dataChange($event)"
+                          >
+                            <ion-select-option value="M" selected
+                              >Male</ion-select-option
+                            >
+                            <ion-select-option value="F"
+                              >Female</ion-select-option
+                            >
                           </ion-select>
                         </ion-item>
                       </ion-col>
                       <ion-col>
                         <ion-item>
                           <ion-label>Type</ion-label>
-                          <ion-select [(ngModel)]="type" (ionChange)="dataChange($event)">
-                            <ion-select-option value="Current Smoker" selected>Smoker</ion-select-option>
-                            <ion-select-option value="Never smoked">Non - Smoker</ion-select-option>
+                          <ion-select
+                            [(ngModel)]="type"
+                            (ionChange)="dataChange($event)"
+                          >
+                            <ion-select-option value="Current Smoker" selected
+                              >Smoker</ion-select-option
+                            >
+                            <ion-select-option value="Never smoked"
+                              >Non - Smoker</ion-select-option
+                            >
                           </ion-select>
                         </ion-item>
                       </ion-col>
                       <ion-col>
                         <ion-item>
                           <ion-label>Age</ion-label>
-                          <ion-select [(ngModel)]="age" (ionChange)="dataChange($event)">
-                            <ion-select-option value="20" selected>20+</ion-select-option>
-                            <ion-select-option value="30" >30+</ion-select-option>
-                            <ion-select-option value="40" >40+</ion-select-option>
-                            <ion-select-option value="50">50+</ion-select-option>
-                            <ion-select-option value="60">60+</ion-select-option>
-                            <ion-select-option value="70">70+</ion-select-option>
+                          <ion-select
+                            [(ngModel)]="age"
+                            (ionChange)="dataChange($event)"
+                          >
+                            <ion-select-option value="20" selected
+                              >20+</ion-select-option
+                            >
+                            <ion-select-option value="30"
+                              >30+</ion-select-option
+                            >
+                            <ion-select-option value="40"
+                              >40+</ion-select-option
+                            >
+                            <ion-select-option value="50"
+                              >50+</ion-select-option
+                            >
+                            <ion-select-option value="60"
+                              >60+</ion-select-option
+                            >
+                            <ion-select-option value="70"
+                              >70+</ion-select-option
+                            >
                           </ion-select>
                         </ion-item>
                       </ion-col>
                       <ion-col>
                         <ion-item>
                           <ion-label>With Diabetes</ion-label>
-                          <ion-select [(ngModel)]="dm" (ionChange)="dataChange($event)">
-                            <ion-select-option value="Yes">Yes</ion-select-option>
-                            <ion-select-option value="No" >No</ion-select-option>
+                          <ion-select
+                            [(ngModel)]="dm"
+                            (ionChange)="dataChange($event)"
+                          >
+                            <ion-select-option value="Yes"
+                              >Yes</ion-select-option
+                            >
+                            <ion-select-option value="No">No</ion-select-option>
                           </ion-select>
                         </ion-item>
                       </ion-col>
                     </ion-row>
                   </ion-grid>
-                  <div id="heatmap" ></div>
+                  <div id="heatmap"></div>
                 </ion-card>
               </ion-col>
-
-
-
-
             </ion-col>
-            <ion-col size-md='4' size-xs="12" class="listofmemebers">
+            <ion-col size-md="4" size-xs="12" class="listofmemebers">
               <app-patient-data [patientData]="patientData"></app-patient-data>
-
-
             </ion-col>
           </ion-row>
-
-
-
         </ion-grid>
-
-
-
       </ion-col>
-            <ion-col size-md="1" size-xs="12"></ion-col>
+      <ion-col size-md="1" size-xs="12"></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-
