@@ -119,6 +119,23 @@ export class CrudService {
     ).get();
     }
 
+    getSocioBarData(collect,age,gender,principal,maritalStatus,education,employment,income,rank,unit,tenure ) {
+      return this.fireservices.collection(
+        collect,
+        ref => ref
+                  .where('GENDER', '==', gender)
+                  .where('AGE', '==', age)
+                  .where('PRINCIPAL OR DEPENDENT', '==', principal)
+                  .where('MARITAL STATUS', '==', maritalStatus)
+                  .where('EDUCATION', '==', education)
+                  .where('EMPLOYMENT', '==', employment)
+                  .where('INCOME', '==', income)
+                  .where('RANK', '==', rank)
+                  .where('UNIT', '==', unit)
+                  .where('TENURE', '==', tenure)    
+      ).get();
+    }
+
 
 
   addMembersAUTH(data){
